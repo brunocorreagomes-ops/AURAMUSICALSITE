@@ -1,0 +1,55 @@
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import { createServer as createViteServer } from "vite";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+async function startServer() {
+  const app = express();
+  const PORT = 3000;
+
+  app.use(express.json());
+
+  // API Mock Endpoints
+  app.post("/api/orders", (req, res) => {
+    const { songRequest, paymentInfo } = req.body;
+    console.log("New Order Received:", songRequest);
+    
+    // System Design: Automation Logic
+    // 1. Capture user data (email, memory, style)
+    // 2. Send confirmation Email/WhatsApp (Zapier/Webhooks)
+    // 3. Create production task in our proprietary AI Composition Engine
+    // 4. Queue artist review and mastering
+    // 5. Trigger delivery flow (generate protected URL)
+
+    res.status(201).json({ 
+      success: true, 
+      orderId: "ORD-" + Math.random().toString(36).substring(7).toUpperCase(),
+      deliveryUrl: "/gift/demo-123"
+    });
+  });
+
+  // Vite middleware for development
+  if (process.env.NODE_ENV !== "production") {
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), "dist");
+    app.use(express.static(distPath));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(distPath, "index.html"));
+    });
+  }
+
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Melodia Memorável Server running on http://localhost:${PORT}`);
+    console.log("SYSTEM ENGINE: Ready for AI-assisted composition tasks.");
+  });
+}
+
+startServer();
