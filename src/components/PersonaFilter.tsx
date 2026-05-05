@@ -22,7 +22,7 @@ export default function PersonaFilter({ activePersona, onSelect }: Props) {
           onClick={() => onSelect(opt.id)}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
             activePersona === opt.id
-              ? "bg-brand-accent text-white shadow-[0_0_20px_#ff4e0044]"
+              ? "bg-brand-accent text-white shadow-[0_0_20px_#D4AF3744]"
               : "glass text-white/40 hover:text-white"
           }`}
         >

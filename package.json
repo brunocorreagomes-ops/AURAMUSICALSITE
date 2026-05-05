@@ -1,6 +1,6 @@
 {
-  "name": "react-example",
-  "private": true,
+  "name": "melodia-memoravel",
+  "description": "Transforme lembranças em músicas únicas com IA",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

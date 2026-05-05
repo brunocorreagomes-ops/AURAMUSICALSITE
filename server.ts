@@ -47,7 +47,7 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Melodia Memorável Server running on http://localhost:${PORT}`);
+    console.log(`Aura Musical Server running on http://localhost:${PORT}`);
     console.log("SYSTEM ENGINE: Ready for AI-assisted composition tasks.");
   });
 }

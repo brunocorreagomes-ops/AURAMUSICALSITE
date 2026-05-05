@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Music, Share2, Download, Heart, Play, Pause, Volume2, Star, Sparkles, ChevronRight } from "lucide-react";
+import { Music, Share2, Download, Heart, Play, Pause, Volume2, Star, Sparkles, ChevronRight, MessageCircle, Facebook, Twitter, Instagram, Link as LinkIcon } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { SongRequest } from "../types";
 
@@ -36,6 +36,15 @@ export default function DeliveryPage({ songRequest }: DeliveryPageProps) {
     }
   };
 
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : "https://auramusical.com";
+  const shareText = "Acabei de criar uma música personalizada única na Aura Musical! 🎶✨ Uma homenagem emocionante que eterniza memórias. Crie a sua também:";
+  const shareMessage = encodeURIComponent(`${shareText} ${shareUrl}`);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(shareUrl);
+    alert("Link copiado para a área de transferência!");
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -68,7 +77,7 @@ export default function DeliveryPage({ songRequest }: DeliveryPageProps) {
         >
           <div className="flex items-center gap-3 text-white/40 mb-2">
             <Music size={18} className="text-brand-accent animate-pulse" />
-            <span className="text-[10px] lg:text-[12px] uppercase font-black tracking-[0.4em]">Melodia Memorável</span>
+            <span className="text-[10px] lg:text-[12px] uppercase font-black tracking-[0.4em]">Aura Musical</span>
           </div>
           <div className="space-y-4">
             <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-accent">Exclusivo para você</h2>
@@ -179,7 +188,7 @@ export default function DeliveryPage({ songRequest }: DeliveryPageProps) {
             <div className="relative h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer group/progress">
               <motion.div 
                 animate={{ width: `${progress}%` }}
-                className="absolute top-0 left-0 h-full bg-brand-accent shadow-[0_0_20px_#ff4e00]" 
+                className="absolute top-0 left-0 h-full bg-brand-accent shadow-[0_0_20px_#D4AF37]" 
               />
               <div className="absolute top-0 left-0 w-full h-full bg-white/5 opacity-0 group-hover/progress:opacity-20 transition-opacity" />
             </div>
@@ -238,9 +247,57 @@ export default function DeliveryPage({ songRequest }: DeliveryPageProps) {
             </div>
             <h4 className="text-3xl lg:text-4xl font-serif italic font-black mb-4 capitalize">Gostou desse presente?</h4>
             <p className="text-base text-white/40 mb-12 max-w-sm mx-auto font-light leading-relaxed">Crie agora uma canção exclusiva para quem você ama também e eternize uma história.</p>
-            <button className="w-full bg-white text-black py-7 rounded-[2rem] font-black text-xl hover:bg-brand-accent hover:text-white transition-all flex items-center justify-center gap-3 uppercase tracking-tighter">
+            <button className="w-full bg-white text-black py-7 rounded-[2rem] font-black text-xl hover:bg-brand-accent hover:text-white transition-all flex items-center justify-center gap-3 uppercase tracking-tighter shadow-xl">
               CRIAR MINHA MELODIA <Sparkles size={24} />
             </button>
+
+            {/* Social Share Buttons */}
+            <div className="mt-12 space-y-6">
+              <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em]">Compartilhe essa emoção</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a 
+                  href={`https://api.whatsapp.com/send?text=${shareMessage}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all"
+                  title="WhatsApp"
+                >
+                  <MessageCircle size={24} fill="currentColor" />
+                </a>
+                <a 
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] transition-all"
+                  title="Facebook"
+                >
+                  <Facebook size={24} fill="currentColor" />
+                </a>
+                <a 
+                  href={`https://twitter.com/intent/tweet?text=${shareMessage}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-[#000000] border border-white/10 text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all"
+                  title="X (Twitter)"
+                >
+                  <Twitter size={24} fill="currentColor" />
+                </a>
+                <button 
+                  onClick={() => window.open('https://instagram.com')}
+                  className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_20px_rgba(220,39,67,0.4)] transition-all"
+                  title="Instagram"
+                >
+                  <Instagram size={24} />
+                </button>
+                <button 
+                  onClick={handleCopyLink}
+                  className="w-14 h-14 rounded-full glass border border-white/10 text-white flex items-center justify-center hover:scale-110 hover:bg-white hover:text-black transition-all"
+                  title="Copiar Link"
+                >
+                  <LinkIcon size={24} />
+                </button>
+              </div>
+            </div>
           </div>
         </motion.div>
 
