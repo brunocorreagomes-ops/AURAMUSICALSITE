@@ -1,13 +1,373 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Musical - Sua História em Canção</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#000000', // Preto profundo
+                            surface: '#0B0B0D', // Fundo de seções
+                            graphite: '#1C1C1E', // Cinza grafite
+                            gray: '#3A3A3C', // Cinza médio
+                            light: '#F2F2F2', // Branco suave
+                            gold: {
+                                DEFAULT: '#D4AF37', // Dourado principal
+                                light: '#F5D97A', // Brilho
+                                dark: '#9C7A1C'  // Sombra
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-gold': 'linear-gradient(135deg, #9C7A1C 0%, #D4AF37 40%, #F5D97A 60%, #D4AF37 100%)',
+                        'gradient-radial-glow': 'radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                    }
+                }
+            }
+        }
+    </script>
 
+    <!-- Custom CSS for Glow & Effects -->
+    <style>
+        .text-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .border-gold-gradient {
+            border: 1px solid transparent;
+            background-image: linear-gradient(#0B0B0D, #0B0B0D), linear-gradient(135deg, #9C7A1C, #D4AF37, #F5D97A, #D4AF37);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #9C7A1C 0%, #D4AF37 40%, #F5D97A 60%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-gold {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #9C7A1C 0%, #D4AF37 40%, #F5D97A 60%, #D4AF37 100%);
+            color: black;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 9999px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(212,175,55,0.3);
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            box-shadow: 0 0 50px rgba(212,175,55,0.6);
+            transform: scale(1.05);
+        }
+        .btn-gold:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 9999px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: linear-gradient(135deg, #9C7A1C 0%, #D4AF37 40%, #F5D97A 60%, #D4AF37 100%);
+            color: black;
+            border-color: transparent;
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+        }
+        
+        .glass-card {
+            background-color: rgba(28, 28, 30, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .glass-card {
+                padding: 2rem;
+            }
+        }
+        
+        body {
+            background-color: #000000;
+            color: #F2F2F2;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(156, 122, 28, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-black">
+    <div class="ambient-bg"></div>
+
+    <!-- Header Mobile & Desktop -->
+    <header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" class="w-10 h-10 object-contain">
+                <span class="text-xl md:text-2xl font-serif italic font-black text-brand-light">Aura Musical</span>
+            </div>
+            <a href="#planos" class="hidden md:inline-block btn-outline px-6 py-2 text-[10px] md:text-xs">
+                Fazer meu pedido
+            </a>
+            <a href="#planos" class="md:hidden text-brand-gold font-black uppercase text-[10px] tracking-widest">
+                Comprar
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/30 bg-brand-gold/10 text-brand-gold text-[10px] uppercase font-black tracking-[0.3em] mb-8 animate-pulse">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+                Vagas limitadas esta semana
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif italic font-black text-brand-light leading-[1.1] mb-6 md:mb-8">
+                Eternize os momentos<br class="hidden md:block"> mais importantes 
+                <span class="text-gradient-gold">em música</span>.
+            </h1>
+
+            <p class="text-lg md:text-xl text-brand-gray/80 max-w-2xl mx-auto font-light leading-relaxed mb-10 md:mb-12">
+                Uma canção personalizada, criada artesanalmente para emocionar quem você ama. A combinação perfeita de arte, sentimento e luxo.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#planos" class="w-full sm:w-auto btn-gold px-10 py-5 text-sm md:text-base">
+                    Quero essa homenagem
+                </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-6 md:gap-12 text-[10px] md:text-xs text-brand-gray font-bold uppercase tracking-widest">
+                <div class="flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-brand-gold"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Entrega Rápida
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-brand-gold"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Compra 100% Segura
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] bg-gradient-radial-glow -z-10 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+    </main>
+
+    <!-- Como Funciona Section -->
+    <section class="py-20 md:py-32 px-6 bg-brand-surface relative z-10 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-3xl md:text-5xl font-serif italic font-black text-brand-light mb-4">A Experiência Aura</h2>
+                <p class="text-brand-gold text-xs uppercase font-black tracking-[0.3em]">O processo da sua obra de arte</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12 relative">
+                <!-- Line connection (desktop) -->
+                <div class="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-[1px] bg-brand-gold/20 -z-10"></div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full border-gold-gradient flex items-center justify-center mb-6 text-brand-gold text-2xl font-serif italic group-hover:scale-110 transition-transform">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-light">Sua História</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed">Você nos conta os detalhes, sentimentos e memórias que deseja eternizar na canção.</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full border-gold-gradient flex items-center justify-center mb-6 text-brand-gold text-2xl font-serif italic group-hover:scale-110 transition-transform">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-light">Composição</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed">Nossos especialistas elaboram a letra e o arranjo perfeito para a sua homenagem.</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto rounded-full border-gold-gradient flex items-center justify-center mb-6 text-brand-gold text-2xl font-serif italic group-hover:scale-110 transition-transform">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-light">Entrega Mágica</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed">Você recebe a música pronta para surpreender em alta qualidade de estúdio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Checkout Hotmart Section -->
+    <section id="planos" class="py-20 md:py-32 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-5xl font-serif italic font-black text-brand-light mb-4">Escolha a sua Experiência</h2>
+                <p class="text-brand-gray text-sm md:text-base max-w-xl mx-auto font-light">Selecione o pacote perfeito. O pagamento é seguro e processado diretamente pela Hotmart.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+                <!-- Start Plan 1 -->
+                <div class="glass-card flex flex-col group hover:border-brand-gold/30 transition-colors">
+                    <div class="mb-8 flex-1">
+                        <h3 class="text-2xl font-serif italic font-black mb-2 text-brand-light">Acústico Elegance</h3>
+                        <p class="text-xs text-brand-gray uppercase tracking-widest font-black mb-6">Música Básico</p>
+                        
+                        <div class="text-4xl font-black text-brand-light mb-8">
+                            <span class="text-lg text-brand-gray font-medium align-top">R$</span>197<span class="text-lg text-brand-gray font-medium">,00</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Música personalizada (Voz & Violão)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Criação sob medida
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Áudio em Alta Qualidade
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Link Hotmart 1 -->
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" class="w-full btn-outline py-4 text-center text-xs">
+                        Comprar Agora
+                    </a>
+                </div>
+
+                <!-- Start Plan 2 (Highlighted) -->
+                <div class="glass-card border-brand-gold flex flex-col relative transform lg:-translate-y-4 shadow-[0_0_40px_rgba(212,175,55,0.15)] bg-brand-gold/5">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-gold text-black px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
+                        Mais Escolhido
+                    </div>
+
+                    <div class="mb-8 flex-1">
+                        <h3 class="text-2xl font-serif italic font-black mb-2 text-brand-light">Experiência Ouro</h3>
+                        <p class="text-xs text-brand-gold uppercase tracking-widest font-black mb-6">Arranjo Completo</p>
+                        
+                        <div class="text-4xl font-black text-gradient-gold mb-8">
+                            <span class="text-lg text-brand-gold font-medium align-top">R$</span>297<span class="text-lg text-brand-gold font-medium">,00</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-brand-light/90">
+                                <span class="text-brand-gold mt-1">✔</span> Produção Cinematográfica completa
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/90">
+                                <span class="text-brand-gold mt-1">✔</span> Entrega Prioritária
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/90">
+                                <span class="text-brand-gold mt-1">✔</span> Letra em PDF Estilizado
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/90">
+                                <span class="text-brand-gold mt-1">✔</span> Versão exclusiva para WhatsApp
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Link Hotmart 2 -->
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" class="w-full btn-gold py-4 text-center text-xs">
+                        Comprar Experiência Ouro
+                    </a>
+                </div>
+
+                <!-- Start Plan 3 -->
+                <div class="glass-card flex flex-col group hover:border-brand-gold/30 transition-colors">
+                    <div class="mb-8 flex-1">
+                        <h3 class="text-2xl font-serif italic font-black mb-2 text-brand-light">Diamante VIP</h3>
+                        <p class="text-xs text-brand-gray uppercase tracking-widest font-black mb-6">Combo Premium</p>
+                        
+                        <div class="text-4xl font-black text-brand-light mb-8">
+                            <span class="text-lg text-brand-gray font-medium align-top">R$</span>497<span class="text-lg text-brand-gray font-medium">,00</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Versão Principal + Instrumental
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Fura-fila (Entrega Expressa)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Revisões Ilimitadas
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-brand-light/80">
+                                <span class="text-brand-gold mt-1">✔</span> Mensagem Narrada Bônus
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Link Hotmart 3 -->
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" class="w-full btn-outline py-4 text-center text-xs">
+                        Comprar Diamante
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center bg-brand-graphite/30 rounded-2xl p-4 max-w-md mx-auto border border-white/5 flex items-center justify-center gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand-gray"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2"/></svg>
+                <div class="text-left">
+                    <p class="text-[10px] text-brand-gray font-black uppercase tracking-widest">Pagamento 100% Seguro</p>
+                    <p class="text-xs text-brand-light/50">Ambiente protegido pela Hotmart</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5 bg-brand-surface text-center">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" class="w-12 h-12 object-contain mb-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+            
+            <p class="text-[10px] text-brand-gray uppercase tracking-widest font-black mb-4">
+                © <span id="year"></span> Aura Musical. Todos os direitos reservados.
+            </p>
+            
+            <div class="flex gap-6 mt-4">
+                <a href="#" class="text-xs text-brand-gray hover:text-brand-gold transition-colors">Termos de Uso</a>
+                <a href="#" class="text-xs text-brand-gray hover:text-brand-gold transition-colors">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

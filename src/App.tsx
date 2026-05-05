@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import LandingPage from "./components/LandingPage";
-import PersonalizationForm from "./components/PersonalizationForm";
-import Checkout from "./components/Checkout";
-import DeliveryPage from "./components/DeliveryPage";
-import PricingGrid from "./components/PricingGrid";
-import SuccessPage from "./components/SuccessPage";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { SongRequest, AppStep } from "./types";
 import { motion, AnimatePresence } from "motion/react";
+
+const LandingPage = lazy(() => import("./components/LandingPage"));
+const PersonalizationForm = lazy(() => import("./components/PersonalizationForm"));
+const Checkout = lazy(() => import("./components/Checkout"));
+const DeliveryPage = lazy(() => import("./components/DeliveryPage"));
+const PricingGrid = lazy(() => import("./components/PricingGrid"));
+const SuccessPage = lazy(() => import("./components/SuccessPage"));
 
 export default function App() {
   const [step, setStep] = useState<AppStep>("landing");
@@ -73,29 +74,31 @@ export default function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {step === "landing" && <LandingPage onStart={handleStart} />}
-          {step === "form" && (
-            <PersonalizationForm 
-              initialData={songRequest}
-              onSubmit={handleFormSubmit} 
-              onBack={() => setStep("landing")} 
-            />
-          )}
-          {step === "pricing" && (
-            <PricingGrid 
-              onSelect={handlePlanSelect} 
-              onBack={() => setStep("form")} 
-            />
-          )}
-          {step === "checkout" && (
-            <Checkout 
-              songRequest={songRequest} 
-              onPaid={handlePaid} 
-              onBack={() => setStep("pricing")} 
-            />
-          )}
-          {step === "delivery" && <DeliveryPage songRequest={songRequest} />}
-          {step === "success" && <SuccessPage />}
+          <Suspense fallback={<div className="min-h-screen bg-brand-bg flex items-center justify-center"><div className="w-12 h-12 rounded-full border-t-2 border-brand-accent animate-spin" /></div>}>
+            {step === "landing" && <LandingPage onStart={handleStart} />}
+            {step === "form" && (
+              <PersonalizationForm 
+                initialData={songRequest}
+                onSubmit={handleFormSubmit} 
+                onBack={() => setStep("landing")} 
+              />
+            )}
+            {step === "pricing" && (
+              <PricingGrid 
+                onSelect={handlePlanSelect} 
+                onBack={() => setStep("form")} 
+              />
+            )}
+            {step === "checkout" && (
+              <Checkout 
+                songRequest={songRequest} 
+                onPaid={handlePaid} 
+                onBack={() => setStep("pricing")} 
+              />
+            )}
+            {step === "delivery" && <DeliveryPage songRequest={songRequest} />}
+            {step === "success" && <SuccessPage />}
+          </Suspense>
         </motion.div>
       </AnimatePresence>
     </div>
