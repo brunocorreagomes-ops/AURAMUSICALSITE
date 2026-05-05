@@ -144,7 +144,7 @@ export default function Quiz({ onFinish }: Props) {
             <div className="grid gap-3 mb-8 mt-6">
               {questions[step].options.map((opt) => (
                 <button
-                  key={opt.value}
+                  key={opt.label}
                   onClick={() => handleOptionClick(opt.value)}
                   className="w-full py-5 rounded-2xl glass hover:bg-white/10 hover:border-white/20 text-sm font-bold transition-all border border-white/5 group flex items-center justify-between px-8"
                 >

@@ -6,10 +6,6 @@ import DynamicContent from "./DynamicContent";
 import Quiz from "./Quiz";
 import { Persona } from "./data";
 
-interface LandingPageProps {
-  onStart: (initialData?: any) => void;
-}
-
 function Testimonial({ name, text, role, highlight }: { name: string; text: string; role: string; highlight?: boolean }) {
   return (
     <div className={`p-6 md:p-10 rounded-3xl md:rounded-[3rem] border transition-all duration-500 hover:-translate-y-2 ${highlight ? 'bg-brand-accent/10 border-brand-accent shadow-[0_20px_50px_rgba(212,175,55,0.1)]' : 'glass border-white/5'}`}>
@@ -25,13 +21,14 @@ function Testimonial({ name, text, role, highlight }: { name: string; text: stri
   );
 }
 
-export default function LandingPage({ onStart }: LandingPageProps) {
+export default function LandingPage() {
   const [persona, setPersona] = useState<Persona>("geral");
   const [quizDone, setQuizDone] = useState(false);
   const [quizResults, setQuizResults] = useState<any>(null);
 
   const handleStart = () => {
-    onStart(quizResults);
+    // scroll to pricing section
+    document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleQuizFinish = (results: any) => {
@@ -185,29 +182,122 @@ export default function LandingPage({ onStart }: LandingPageProps) {
         </div>
       </section>
 
-      {/* Pricing / Final CTA */}
-      <section className="py-40 px-6 relative overflow-hidden text-center">
-        <div className="absolute inset-0 atmosphere-bg opacity-50"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h2 className="text-6xl lg:text-8xl font-serif italic font-black mb-10 tracking-tighter leading-tight italic">Eternize esse momento hoje.</h2>
-          
-          <div className="flex justify-center gap-4 mb-16">
-             <div className="glass px-6 py-3 rounded-full flex items-center gap-2 border border-brand-accent/30 text-brand-accent text-xs font-black uppercase tracking-widest">
-               <ShieldCheck size={14} /> Garantia de Emoção
-             </div>
-             <div className="glass px-6 py-3 rounded-full flex items-center gap-2 border border-white/10 text-white/50 text-xs font-black uppercase tracking-widest">
-               <Clock size={14} /> Somente 5 vagas
-             </div>
-          </div>
+      {/* Pricing / Checkout Hotmart Section */}
+      <section id="planos" className="py-20 md:py-32 px-6 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16 md:mb-20">
+                <h2 className="text-4xl md:text-6xl font-serif italic font-black text-brand-light mb-6">Escolha a sua Experiência</h2>
+                <p className="text-white/60 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
+                  Selecione o pacote perfeito. O pagamento é 100% seguro e processado diretamente pela Hotmart.
+                </p>
+            </div>
 
-          <button 
-            onClick={handleStart}
-            className="w-full sm:w-auto group bg-white text-black px-8 sm:px-16 py-6 md:py-8 rounded-full md:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-[0_0_80px_rgba(255,255,255,0.2)] hover:bg-brand-accent hover:text-white hover:shadow-[0_0_80px_rgba(212,175,55,0.3)] transition-all flex items-center justify-center gap-4 md:gap-6 uppercase tracking-tighter mx-auto"
-          >
-            QUERO ESSA HOMENAGEM <ChevronRight size={24} className="sm:hidden" /><ChevronRight size={32} className="hidden sm:block" />
-          </button>
-          
-          <p className="mt-8 text-[10px] font-black text-white/20 uppercase tracking-[0.4em]">Produção Artesanal Limitada</p>
+            <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {/* Start Plan 1 */}
+                <div className="glass p-8 md:p-10 rounded-3xl flex flex-col group hover:border-brand-accent/30 transition-colors border border-white/10">
+                    <div className="mb-8 flex-1">
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Acústico Elegance</h3>
+                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-black mb-6">Música Básico</p>
+                        
+                        <div className="text-4xl font-black text-brand-light mb-8 font-sans">
+                            <span className="text-lg text-white/40 font-medium align-top">R$</span>197<span className="text-lg text-white/40 font-medium">,00</span>
+                        </div>
+
+                        <ul className="space-y-4 mb-8">
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Música personalizada (Voz & Violão)
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Criação sob medida
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Áudio em Alta Qualidade
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* Link Hotmart 1 */}
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                        Comprar Agora
+                    </a>
+                </div>
+
+                {/* Start Plan 2 (Highlighted) */}
+                <div className="glass p-8 md:p-10 border-brand-accent flex flex-col relative transform lg:-translate-y-4 shadow-[0_0_40px_rgba(212,175,55,0.15)] bg-brand-accent/5 rounded-3xl border-2">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-accent text-black px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap shadow-[0_0_20px_#D4AF3744]">
+                        Mais Escolhido
+                    </div>
+
+                    <div className="mb-8 flex-1">
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Experiência Ouro</h3>
+                        <p className="text-[10px] text-brand-accent uppercase tracking-widest font-black mb-6">Arranjo Completo</p>
+                        
+                        <div className="text-4xl font-black text-brand-accent mb-8 font-sans">
+                            <span className="text-lg text-brand-accent font-medium align-top">R$</span>297<span className="text-lg text-brand-accent font-medium">,00</span>
+                        </div>
+
+                        <ul className="space-y-4 mb-8">
+                            <li className="flex items-start gap-3 text-sm text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Produção Cinematográfica completa
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Entrega Prioritária
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Letra em PDF Estilizado
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Versão exclusiva para WhatsApp
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* Link Hotmart 2 */}
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-gold py-4 text-center text-xs shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)]">
+                        Comprar Experiência Ouro
+                    </a>
+                </div>
+
+                {/* Start Plan 3 */}
+                <div className="glass p-8 md:p-10 rounded-3xl flex flex-col group hover:border-brand-accent/30 transition-colors border border-white/10">
+                    <div className="mb-8 flex-1">
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Diamante VIP</h3>
+                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-black mb-6">Combo Premium</p>
+                        
+                        <div className="text-4xl font-black text-brand-light mb-8 font-sans">
+                            <span className="text-lg text-white/40 font-medium align-top">R$</span>497<span className="text-lg text-white/40 font-medium">,00</span>
+                        </div>
+
+                        <ul className="space-y-4 mb-8">
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Versão Principal + Instrumental
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Fura-fila (Entrega Expressa)
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Revisões Ilimitadas
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-white/80">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Mensagem Narrada Bônus
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* Link Hotmart 3 */}
+                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                        Comprar Diamante
+                    </a>
+                </div>
+            </div>
+            
+            <div className="mt-12 text-center bg-brand-bg/50 rounded-2xl p-4 max-w-sm mx-auto border border-white/5 flex items-center justify-center gap-4">
+                <ShieldCheck size={24} className="text-white/40" />
+                <div className="text-left">
+                    <p className="text-[10px] text-white/40 font-black uppercase tracking-widest">Pagamento 100% Seguro</p>
+                    <p className="text-xs text-white/20">Ambiente protegido pela Hotmart</p>
+                </div>
+            </div>
         </div>
       </section>
 
