@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, ChevronRight, Music, Clock, User, Heart, Mic2, Star, Send } from "lucide-react";
+import { CheckCircle2, ChevronRight, Music, Clock, User, Heart, Mic2, Star, Send, HelpCircle, ChevronDown } from "lucide-react";
+
+const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b border-white/5 last:border-0">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-5 flex items-center justify-between text-left group transition-colors"
+      >
+        <span className="text-sm font-bold text-white/80 group-hover:text-brand-accent transition-colors">{question}</span>
+        <ChevronDown size={18} className={`text-white/20 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand-accent' : ''}`} />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        className="overflow-hidden"
+      >
+        <p className="pb-5 text-xs text-white/40 leading-relaxed max-w-2xl">{answer}</p>
+      </motion.div>
+    </div>
+  );
+};
 
 export default function ObrigadoPage() {
   const [step, setStep] = useState(1);
@@ -370,6 +392,47 @@ export default function ObrigadoPage() {
             </div>
           </motion.div>
         )}
+
+        {/* FAQ Section */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-20 border-t border-white/5 pt-12"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-accent border border-white/10">
+              <HelpCircle size={20} />
+            </div>
+            <div>
+              <h3 className="text-xl font-serif italic font-black text-white/90">Dúvidas Frequentes</h3>
+              <p className="text-[10px] uppercase tracking-widest text-white/30 font-bold">O que você precisa saber</p>
+            </div>
+          </div>
+
+          <div className="glass p-6 md:p-8 rounded-[2rem] border border-white/10">
+            <FAQItem 
+              question="Quanto tempo leva para minha música ficar pronta?" 
+              answer="O prazo padrão de produção é de até 4 dias úteis. Caso você tenha adquirido o 'Fura-fila/Entrega Expressa', sua música e o briefing terão prioridade máxima, com entrega em até 12-24 horas úteis após o envio completo deste formulário." 
+            />
+            <FAQItem 
+              question="Como receberei a música finalizada?" 
+              answer="Você receberá um e-mail com o link para download dos arquivos em alta fidelidade (MP3/WAV), além da letra personalizada em PDF estilizado. Fique atento também à sua caixa de spam." 
+            />
+            <FAQItem 
+              question="Posso pedir alterações se eu não gostar da letra?" 
+              answer="Sim! Sua satisfação é nossa prioridade. Oferecemos suporte para revisões técnicas e de letra após a entrega, garantindo que a canção transmita exatamente o que você deseja." 
+            />
+            <FAQItem 
+              question="A música é realmente feita sob medida para mim?" 
+              answer="Com certeza. Cada composição é tratada de forma individual por nossa equipe de artistas e produtores, que transformam os detalhes que você enviou neste briefing em uma obra musical exclusiva." 
+            />
+            <FAQItem 
+              question="Tive um problema no pagamento ou no formulário, o que fazer?" 
+              answer="Não se preocupe. Entre em contato conosco imediatamente pelo e-mail auramusical@gmail.com informando seu número de pedido. Responderemos o mais rápido possível para ajudar." 
+            />
+          </div>
+        </motion.div>
 
       </div>
     </div>

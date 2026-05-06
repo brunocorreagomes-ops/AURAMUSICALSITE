@@ -38,7 +38,7 @@ async function startServer() {
     console.log(JSON.stringify(briefingData, null, 2));
     
     // Automação via Make.com
-    const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+    const webhookUrl = process.env.MAKE_WEBHOOK_URI || process.env.MAKE_WEBHOOK_URL;
     if (webhookUrl) {
       try {
         await fetch(webhookUrl, {
