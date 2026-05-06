@@ -6,6 +6,7 @@ import Quiz from "./Quiz";
 import { Persona, contentMap } from "./data";
 import BackToTop from "./BackToTop";
 import DeliveryShorts from "./DeliveryShorts";
+import Navbar from "./Navbar";
 
 function Testimonial({ name, text, role, highlight }: { name: string; text: string; role: string; highlight?: boolean }) {
   return (
@@ -22,12 +23,21 @@ function Testimonial({ name, text, role, highlight }: { name: string; text: stri
   );
 }
 
+import Navbar from "./Navbar";
+
 export default function LandingPage() {
   const [persona, setPersona] = useState<Persona>("geral");
   const [quizDone, setQuizDone] = useState(false);
   const [quizResults, setQuizResults] = useState<any>(null);
 
   useEffect(() => {
+    // Handle hash scroll on mount
+    if (window.location.hash.includes('planos')) {
+       setTimeout(() => {
+         document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' });
+       }, 500);
+    }
+
     // Load Hotmart Widget
     const script = document.createElement('script');
     script.src = 'https://static.hotmart.com/checkout/widget.min.js';
@@ -61,46 +71,23 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans overflow-x-hidden atmosphere-bg">
       <BackToTop />
-      {/* Header */}
-      <nav className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4 md:py-8 max-w-7xl mx-auto relative z-50 gap-6">
-        <a href="#/" className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
-          <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" referrerPolicy="no-referrer" />
-          Aura Musical
-        </a>
-        
-        <div className="flex items-center gap-4 md:gap-8 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto justify-center no-scrollbar">
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black hover:text-brand-accent transition-colors">Início</a>
-          <a href="#/sobre-nos" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Sobre Nós</a>
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Planos</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Suporte</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">FAQ</a>
-          <div className="flex items-center gap-4 ml-2 border-l border-white/10 pl-4">
-            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <Instagram size={16} />
-            </a>
-            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <MessageCircle size={16} />
-            </a>
-          </div>
-        </div>
-
-        <button 
-          onClick={handleStart}
-          className="btn-gold px-6 py-2.5 text-[10px] md:text-xs animate-pulse-slow"
-        >
-          Criar Música
-        </button>
-      </nav>
+      
+      <Navbar onCtaClick={handleStart} />
 
       {/* Hero Section */}
-      <section className="relative pt-12 md:pt-20 pb-32 px-6 max-w-7xl mx-auto z-10">
-        <motion.div
-           initial={{ opacity: 0, y: -10 }}
-           animate={{ opacity: 1, y: 0 }}
-           className="mb-8 md:mb-16"
-        >
-          <PersonaFilter activePersona={persona} onSelect={setPersona} />
-        </motion.div>
+      <section className="relative pt-32 md:pt-48 pb-32 px-6 max-w-7xl mx-auto z-10">
+        <div className="flex flex-col items-center mb-16 md:mb-24">
+          <motion.div
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             className="glass px-6 py-4 md:px-10 md:py-6 rounded-[2.5rem] border-brand-accent/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group"
+          >
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-accent text-black text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest shadow-xl">
+              PASSO 1: ESCOLHA O PRESENTEAR
+            </div>
+            <PersonaFilter activePersona={persona} onSelect={setPersona} />
+          </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <motion.div 

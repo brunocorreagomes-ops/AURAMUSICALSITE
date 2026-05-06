@@ -31,6 +31,8 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onToggle })
   );
 };
 
+import Navbar from "./Navbar";
+
 export default function ObrigadoPage() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -124,34 +126,10 @@ export default function ObrigadoPage() {
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans atmosphere-bg flex flex-col items-center py-8 md:py-12 px-4 sm:px-6">
       <BackToTop />
-      {/* Header - Added for consistency */}
-      <nav className="w-full flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4 md:py-8 max-w-7xl mx-auto relative z-50 gap-6 mb-12">
-        <a href="#/" className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
-          <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" referrerPolicy="no-referrer" />
-          Aura Musical
-        </a>
-        
-        <div className="flex items-center gap-4 md:gap-8 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto justify-center no-scrollbar">
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black hover:text-brand-accent transition-colors">Início</a>
-          <a href="#/sobre-nos" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Sobre Nós</a>
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Planos</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Suporte</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">FAQ</a>
-          <div className="flex items-center gap-4 ml-2 border-l border-white/10 pl-4">
-            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <Instagram size={16} />
-            </a>
-            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <MessageCircle size={16} />
-            </a>
-          </div>
-          <a href="#/" className="btn-gold px-5 py-2 text-[10px] ml-2">
-            Criar Música
-          </a>
-        </div>
-      </nav>
+      
+      <Navbar />
 
-      <div className="max-w-3xl w-full">
+      <div className="max-w-3xl w-full mt-24">
         {/* Progress Stepper */}
         <div className="flex items-center justify-between mb-12 max-w-sm mx-auto">
           {[1, 2, 3].map((s) => (

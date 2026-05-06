@@ -1,35 +1,14 @@
 import { motion } from "motion/react";
-import { Music, MessageSquare, Heart, Instagram, MessageCircle } from "lucide-react";
+import { Music, MessageSquare, Heart } from "lucide-react";
 import BackToTop from "./BackToTop";
+import Navbar from "./Navbar";
 
 export default function SobreNosPage() {
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans selection:bg-brand-accent selection:text-black">
       <BackToTop />
-      {/* Navigation - Improved for clarity and consistency */}
-      <nav className="fixed top-0 w-full z-[100] px-6 py-4 flex flex-col md:flex-row justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 gap-4">
-        <a href="#/" className="font-serif italic font-black text-2xl tracking-tighter">
-          Aura <span className="text-brand-accent">Musical</span>
-        </a>
-        <div className="flex items-center gap-6 md:gap-8 flex-wrap justify-center">
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 hover:text-brand-accent transition-colors">Início</a>
-          <a href="#/sobre-nos" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-accent">Sobre Nós</a>
-          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 hover:text-brand-accent transition-colors">Planos</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 hover:text-brand-accent transition-colors">Suporte</a>
-          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 hover:text-brand-accent transition-colors">FAQ</a>
-          <div className="flex items-center gap-4 ml-2 border-l border-white/10 pl-4">
-            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <Instagram size={16} />
-            </a>
-            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <MessageCircle size={16} />
-            </a>
-          </div>
-          <a href="#/" className="btn-gold px-5 py-2 text-[10px] ml-2">
-            Criar Música
-          </a>
-        </div>
-      </nav>
+      
+      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-40 pb-20 px-6 bg-black relative overflow-hidden">
