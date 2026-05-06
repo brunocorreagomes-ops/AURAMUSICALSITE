@@ -1,38 +1,93 @@
 import { motion } from "motion/react";
-import { Search, Hourglass } from "lucide-react";
+import { Clock, CheckCircle2, Music, Heart, MessageSquare } from "lucide-react";
 
 export default function AnalisePage() {
   return (
-    <div className="min-h-screen bg-brand-bg text-brand-light font-sans atmosphere-bg flex flex-col items-center justify-center py-12 px-6">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-2xl w-full text-center"
-      >
-        <div className="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-            <div className="absolute inset-0 rounded-full border-[3px] border-white/10 border-t-brand-accent animate-spin" />
-            <Search size={32} className="text-brand-accent" />
-        </div>
-        
-        <h1 className="text-4xl md:text-5xl font-serif italic font-black mb-6">Pagamento em Análise</h1>
-        
-        <div className="glass p-8 rounded-3xl border border-white/10 mb-8 inline-block max-w-lg">
-          <h2 className="text-xl font-bold mb-4 flex items-center justify-center gap-3">
-            <Hourglass size={20} className="text-brand-accent" />
-            Análise de Crédito
-          </h2>
-          <p className="text-white/60 font-light leading-relaxed">
-            Seu pagamento está em análise pela equipe de segurança da Hotmart ou pela administradora do seu cartão de crédito.
+    <div className="min-h-screen bg-brand-bg text-white font-sans atmosphere-bg flex flex-col items-center justify-center py-12 px-4 sm:px-6">
+      <div className="max-w-3xl w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="mb-12"
+        >
+          <div className="w-24 h-24 rounded-full bg-brand-accent/20 mx-auto flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(212,175,55,0.3)]">
+            <Clock size={48} className="text-brand-accent animate-pulse" />
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-serif italic font-black text-white mb-6 leading-tight">
+            Briefing em Análise!
+          </h1>
+          <p className="text-lg md:text-xl text-white/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            Recebemos suas informações. Nossa equipe criativa já está mergulhando na sua história para compor algo verdadeiramente <span className="text-brand-accent italic">inesquecível</span>.
           </p>
-          <p className="text-white/60 font-light mt-4">
-            Isso é um procedimento padrão para sua segurança e geralmente é concluído em poucos minutos.
-          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="glass p-8 rounded-3xl border border-white/5"
+          >
+            <Music className="text-brand-accent mb-4 mx-auto" size={24} />
+            <h3 className="text-xs font-black uppercase tracking-widest mb-2">Composição</h3>
+            <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-wider">Transformando fatos em poesia e melodia.</p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="glass p-8 rounded-3xl border border-brand-accent/20 bg-brand-accent/5 shadow-lg shadow-brand-accent/5"
+          >
+            <Clock className="text-brand-accent mb-4 mx-auto" size={24} />
+            <h3 className="text-xs font-black uppercase tracking-widest mb-2">Produção</h3>
+            <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-wider">Ajustando cada arranjo para máxima emoção.</p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="glass p-8 rounded-3xl border border-white/5"
+          >
+            <CheckCircle2 className="text-brand-accent mb-4 mx-auto" size={24} />
+            <h3 className="text-xs font-black uppercase tracking-widest mb-2">Entrega</h3>
+            <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-wider">Você receberá o link por e-mail e WhatsApp.</p>
+          </motion.div>
         </div>
 
-        <p className="text-xs font-bold text-white/40 uppercase tracking-widest">
-            Assim que aprovado, enviaremos o link do briefing para o seu e-mail.
-        </p>
-      </motion.div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="glass p-8 md:p-12 rounded-[3rem] border border-white/10 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl -mr-16 -mt-16 rounded-full" />
+          
+          <div className="flex flex-col md:flex-row items-center gap-8 text-left relative z-10">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+              <Heart className="text-brand-accent" size={32} />
+            </div>
+            <div>
+              <h4 className="text-xl font-serif italic font-bold mb-2">O que acontece agora?</h4>
+              <p className="text-sm text-white/50 leading-relaxed font-light">
+                O prazo de entrega do seu plano começou a contar! Fique de olho no seu e-mail (e na caixa de spam) e no WhatsApp informado. Se tiver qualquer dúvida, nosso suporte está à disposição.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="mt-16 flex flex-col items-center gap-6">
+           <p className="text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">Aura Musical • Memórias em Melodia</p>
+           <button 
+             onClick={() => window.location.href = '/'}
+             className="text-brand-accent text-xs font-bold uppercase tracking-widest hover:underline underline-offset-8"
+           >
+             Voltar para o Início
+           </button>
+        </div>
+      </div>
     </div>
   );
 }

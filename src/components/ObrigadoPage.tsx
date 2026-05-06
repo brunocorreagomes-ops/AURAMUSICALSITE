@@ -102,8 +102,10 @@ export default function ObrigadoPage() {
       }
 
       if (response.ok) {
-        setStep(3);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Redireciona para a página de análise após sucesso
+        setTimeout(() => {
+          window.location.hash = "/analise";
+        }, 1500);
       } else {
         throw new Error("Falha ao enviar briefing");
       }

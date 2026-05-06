@@ -262,31 +262,48 @@ export default function LandingPage() {
                 {/* Start Plan 2 (Highlighted) */}
                 <div className="glass p-8 md:p-10 border-brand-accent flex flex-col relative transform lg:-translate-y-4 shadow-[0_0_40px_rgba(212,175,55,0.15)] bg-brand-accent/5 rounded-3xl border-2">
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-accent text-black px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap shadow-[0_0_20px_#D4AF3744]">
-                        Mais Escolhido
+                        O Mais Escolhido
                     </div>
 
                     <div className="mb-8 flex-1">
-                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">AURA MUSICAL POPULAR</h3>
-                        <p className="text-[10px] text-brand-accent uppercase tracking-widest font-black mb-6">Arranjo Completo</p>
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">PLANO AURA POPULAR</h3>
+                        <p className="text-[10px] text-brand-accent uppercase tracking-widest font-black mb-4">Experiência Musical Intensa</p>
+                        <p className="text-[10px] text-white/50 mb-6 leading-relaxed">Uma experiência musical mais intensa, emocional e refinada, ideal para quem deseja algo realmente marcante.</p>
                         
-                        <div className="text-4xl font-black text-brand-accent mb-8 font-sans">
-                            <span className="text-lg text-brand-accent font-medium align-top">R$</span>197<span className="text-lg text-brand-accent font-medium">,90</span>
+                        <div className="mb-8 font-sans">
+                            <p className="text-sm text-brand-accent/40 line-through mb-1">De R$ 297,90</p>
+                            <div className="text-4xl font-black text-brand-accent">
+                                <span className="text-lg text-brand-accent font-medium align-top">por R$</span>197<span className="text-lg text-brand-accent font-medium">,90</span>
+                            </div>
                         </div>
 
                         <ul className="space-y-4 mb-8">
-                            <li className="flex items-start gap-3 text-sm text-white/90">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Produção Cinematográfica completa
+                            <li className="flex items-start gap-3 text-xs text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>1 música personalizada premium</strong>, baseada no seu briefing</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/90">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Entrega Prioritária
+                            <li className="flex items-start gap-3 text-xs text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>Produção com <strong>abordagem cinematográfica</strong> (mais emoção e impacto)</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/90">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Letra em PDF Estilizado
+                            <li className="flex items-start gap-3 text-xs text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>Entrega prioritária</strong> em até 24 horas úteis</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/90">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Versão exclusiva para WhatsApp
+                            <li className="flex items-start gap-3 text-xs text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>2 revisões inclusas</strong> para refinamento</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-xs text-white/90">
+                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>Versão WhatsApp (Stories 9:16)</strong> com vídeo e letra</span>
                             </li>
                         </ul>
+                        
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/10 text-[10px] text-white/40 leading-tight">
+                            <strong className="text-brand-accent uppercase block mb-1 font-bold">Condições:</strong>
+                            A produção inicia após confirmação de pagamento e envio do briefing. Revisões limitadas ao escopo original.
+                        </div>
                     </div>
                     
                     {/* Link Hotmart 2 */}
