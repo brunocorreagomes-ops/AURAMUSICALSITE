@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, ChevronRight, Music, Clock, User, Heart, Mic2, Star, Send, HelpCircle, ChevronDown } from "lucide-react";
+import { CheckCircle2, ChevronRight, Music, Clock, User, Heart, Mic2, Star, Send, HelpCircle, ChevronDown, Instagram, MessageCircle } from "lucide-react";
+import BackToTop from "./BackToTop";
 
 interface FAQItemProps {
   question: string;
@@ -122,6 +123,34 @@ export default function ObrigadoPage() {
 
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans atmosphere-bg flex flex-col items-center py-8 md:py-12 px-4 sm:px-6">
+      <BackToTop />
+      {/* Header - Added for consistency */}
+      <nav className="w-full flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4 md:py-8 max-w-7xl mx-auto relative z-50 gap-6 mb-12">
+        <a href="#/" className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
+          <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" referrerPolicy="no-referrer" />
+          Aura Musical
+        </a>
+        
+        <div className="flex items-center gap-4 md:gap-8 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto justify-center no-scrollbar">
+          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black hover:text-brand-accent transition-colors">Início</a>
+          <a href="#/sobre-nos" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Sobre Nós</a>
+          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Planos</a>
+          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Suporte</a>
+          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">FAQ</a>
+          <div className="flex items-center gap-4 ml-2 border-l border-white/10 pl-4">
+            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <Instagram size={16} />
+            </a>
+            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <MessageCircle size={16} />
+            </a>
+          </div>
+          <a href="#/" className="btn-gold px-5 py-2 text-[10px] ml-2">
+            Criar Música
+          </a>
+        </div>
+      </nav>
+
       <div className="max-w-3xl w-full">
         {/* Progress Stepper */}
         <div className="flex items-center justify-between mb-12 max-w-sm mx-auto">
@@ -408,11 +437,11 @@ export default function ObrigadoPage() {
                <div className="absolute -right-4 -bottom-4 opacity-5">
                  <Music size={150} />
                </div>
-               <h3 className="text-brand-accent font-black uppercase tracking-[0.3em] text-[10px] mb-6 border-b border-brand-accent/20 pb-4">Próximos Passos:</h3>
+               <h3 className="text-brand-accent font-black uppercase tracking-[0.3em] text-[10px] mb-6 border-b border-brand-accent/20 pb-4">Próximos Passos & Prazos:</h3>
                <ul className="space-y-5 text-xs text-white/70 font-light uppercase tracking-widest">
                  <li className="flex items-start gap-4">
                    <span className="w-5 h-5 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center text-[10px] font-black shrink-0">1</span> 
-                   <span>Produção da letra e melodia</span>
+                   <span>Produção da letra e melodia personalizada</span>
                  </li>
                  <li className="flex items-start gap-4">
                    <span className="w-5 h-5 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center text-[10px] font-black shrink-0">2</span> 
@@ -420,11 +449,11 @@ export default function ObrigadoPage() {
                  </li>
                  <li className="flex items-start gap-4">
                    <span className="w-5 h-5 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center text-[10px] font-black shrink-0">3</span> 
-                   <span>Mixagem e masterização Premium</span>
+                   <span>Entrega em até: <b>VIP (12h úteis)</b>, <b>Popular (24h úteis)</b> ou <b>Básico (48h úteis)</b></span>
                  </li>
                  <li className="flex items-start gap-4">
                    <span className="w-5 h-5 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center text-[10px] font-black shrink-0">4</span> 
-                   <span>Entrega no seu e-mail cadastrado</span>
+                   <span>Link enviado via WhatsApp e E-mail</span>
                  </li>
                </ul>
                
@@ -456,7 +485,7 @@ export default function ObrigadoPage() {
             {[
               {
                 question: "Quanto tempo leva para minha música ficar pronta?",
-                answer: "O prazo padrão de produção é de até 4 dias úteis. Caso você tenha adquirido o 'Fura-fila/Entrega Expressa', sua música e o briefing terão prioridade máxima, com entrega em até 12-24 horas úteis após o envio completo deste formulário."
+                answer: "O prazo de entrega varia conforme o plano escolhido: Plano VIP (12 horas úteis), Plano Popular (24 horas úteis) e Plano Básico (48 horas úteis). O prazo começa a contar após o envio deste briefing."
               },
               {
                 question: "Como receberei a música finalizada?",
@@ -491,14 +520,22 @@ export default function ObrigadoPage() {
       <footer className="w-full py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold mt-20">
         <div className="max-w-4xl mx-auto">
           <p className="mb-2">© 2026 Aura Musical</p>
-          <p className="mb-8 opacity-50 font-normal normal-case tracking-normal">
-            Site desenvolvido e administrado por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">Orvalia Studio</a>
+          <p className="mb-8 opacity-50 font-normal uppercase tracking-widest text-[8px]">
+            SITE DESENVOLVIDO E ADMINISTRADO POR <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">ORVALIA STUDIO</a>
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
             <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
             <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
             <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
             <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
+          </div>
+          <div className="flex justify-center gap-6 mb-8">
+            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <Instagram size={20} />
+            </a>
+            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <MessageCircle size={20} />
+            </a>
           </div>
           <p className="max-w-xl mx-auto opacity-50 font-normal normal-case leading-relaxed">
             As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com

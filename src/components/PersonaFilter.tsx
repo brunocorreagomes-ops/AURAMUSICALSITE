@@ -8,7 +8,7 @@ type Props = {
 
 export default function PersonaFilter({ activePersona, onSelect }: Props) {
   const options: { id: Persona; label: string; icon: any }[] = [
-    { id: "namoro", label: "Namorada(o)", icon: <Heart size={16} /> },
+    { id: "namoro", label: "Namorado / Companheiro(a)", icon: <Heart size={16} /> },
     { id: "amigo", label: "Amigo(a)", icon: <Users size={16} /> },
     { id: "familia", label: "Família", icon: <Home size={16} /> },
     { id: "geral", label: "Outro", icon: <Sparkles size={16} /> },

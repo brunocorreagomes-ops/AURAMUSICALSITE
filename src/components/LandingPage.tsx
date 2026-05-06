@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Play, Star, ChevronRight, CheckCircle2, Music, Heart, MemoryStick as Memory, MessageSquare, Sparkles, Zap, ShieldCheck, Clock } from "lucide-react";
+import { Play, Star, ChevronRight, CheckCircle2, Music, Heart, MemoryStick as Memory, MessageSquare, Sparkles, Zap, ShieldCheck, Clock, Instagram, MessageCircle, ArrowUp } from "lucide-react";
 import PersonaFilter from "./PersonaFilter";
-import DynamicContent from "./DynamicContent";
 import Quiz from "./Quiz";
-import { Persona } from "./data";
+import { Persona, contentMap } from "./data";
+import BackToTop from "./BackToTop";
+import DeliveryShorts from "./DeliveryShorts";
 
 function Testimonial({ name, text, role, highlight }: { name: string; text: string; role: string; highlight?: boolean }) {
   return (
@@ -59,67 +60,109 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans overflow-x-hidden atmosphere-bg">
+      <BackToTop />
       {/* Header */}
-      <nav className="flex justify-between items-center px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto relative z-50">
-        <div className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
+      <nav className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4 md:py-8 max-w-7xl mx-auto relative z-50 gap-6">
+        <a href="#/" className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
           <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" referrerPolicy="no-referrer" />
           Aura Musical
+        </a>
+        
+        <div className="flex items-center gap-4 md:gap-8 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto justify-center no-scrollbar">
+          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black hover:text-brand-accent transition-colors">Início</a>
+          <a href="#/sobre-nos" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Sobre Nós</a>
+          <a href="#/" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Planos</a>
+          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">Suporte</a>
+          <a href="#/suporte" className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 hover:text-brand-accent transition-colors">FAQ</a>
+          <div className="flex items-center gap-4 ml-2 border-l border-white/10 pl-4">
+            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <Instagram size={16} />
+            </a>
+            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <MessageCircle size={16} />
+            </a>
+          </div>
         </div>
+
         <button 
           onClick={handleStart}
-          className="glass hover:bg-white hover:text-black px-4 md:px-6 py-2 rounded-full font-medium transition-all text-xs md:text-sm uppercase tracking-widest whitespace-nowrap"
+          className="btn-gold px-6 py-2.5 text-[10px] md:text-xs animate-pulse-slow"
         >
           Criar Música
         </button>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-6 max-w-7xl mx-auto z-10">
+      <section className="relative pt-12 md:pt-20 pb-32 px-6 max-w-7xl mx-auto z-10">
         <motion.div
            initial={{ opacity: 0, y: -10 }}
            animate={{ opacity: 1, y: 0 }}
-           className="mb-12"
+           className="mb-8 md:mb-16"
         >
           <PersonaFilter activePersona={persona} onSelect={setPersona} />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <motion.div 
             key={persona}
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/20 border border-brand-accent/30 text-brand-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-8 animate-pulse">
-              <Zap size={12} fill="currentColor" /> Produção Artesanal: Somente 5 vagas para esta semana
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/20 border border-brand-accent/30 text-brand-accent text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
+              <Zap size={12} fill="currentColor" /> Produção Artesanal: Somente 11 vagas para esta semana
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif italic font-black text-white mb-6 md:mb-10 leading-[1.1] md:leading-[1] tracking-tighter">
-              Não é só uma música.<br className="hidden md:block" />É uma <span className="text-brand-accent italic underline underline-offset-8 decoration-brand-accent/20">memória eterna</span>.
+            <h1 className="text-4xl sm:text-6xl md:text-[5.5rem] font-serif italic font-black text-white mb-8 leading-[1.05] tracking-tighter">
+              {contentMap[persona].headline.split(' ').map((word, i) => (
+                <span key={i} className={i % 3 === 2 ? "text-brand-accent" : ""}>{word} </span>
+              ))}
             </h1>
 
-            <p className="text-white/50 max-w-xl text-base md:text-xl font-medium leading-relaxed mb-10 md:mb-12">
-              Transformamos sua história, apelidos e detalhes únicos em uma canção profissional digna de rádio. <span className="text-white font-bold">O presente que arranca lágrimas e dura para sempre.</span>
+            <p className="text-white/50 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl font-medium leading-relaxed mb-10 md:mb-12">
+              {contentMap[persona].subheadline} <span className="text-white font-bold block mt-4">A trilha sonora da sua vida, produzida por artistas profissionais.</span>
             </p>
 
-            <div className="space-y-4 md:space-y-6 mt-10 md:mt-16">
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
               <button 
                 onClick={handleStart}
-                className="w-full sm:w-auto bg-white text-black px-8 md:px-12 py-5 md:py-6 rounded-2xl text-lg md:text-xl font-black flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-[0_0_50px_rgba(255,255,255,0.2)] uppercase tracking-tight"
+                className="w-full sm:w-auto bg-white text-black px-10 md:px-14 py-5 md:py-6 rounded-2xl text-lg md:text-xl font-black flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(255,255,255,0.15)] uppercase tracking-tight"
               >
                 CRIAR ESSA HOMENAGEM <ChevronRight size={20} className="md:w-6 md:h-6" />
               </button>
-              <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 text-[10px] uppercase font-black tracking-widest text-white/30 px-2 text-center sm:text-left">
-                <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand-accent" /> Entrega Rápida</span>
-                <span className="hidden sm:block opacity-20">|</span>
-                <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-brand-accent" /> Garantia de Emoção</span>
-              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start mt-8 text-[10px] uppercase font-black tracking-widest text-white/30 px-2">
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand-accent" /> Entrega Rápida</span>
+              <span className="hidden sm:block opacity-20">|</span>
+              <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-brand-accent" /> Garantia de Emoção</span>
             </div>
           </motion.div>
 
-          <div className="relative group">
+          <div className="relative group perspective-1000">
             {!quizDone ? (
-              <Quiz onFinish={handleQuizFinish} />
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-brand-accent/20 to-purple-500/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                <Quiz onFinish={handleQuizFinish} />
+                
+                {/* Persona Preview Floating Card (SEO & Conversion boost) */}
+                <motion.div 
+                  key={`preview-${persona}`}
+                  initial={{ opacity: 0, y: 20, rotateY: 20 }}
+                  animate={{ opacity: 1, y: 0, rotateY: 10 }}
+                  className="hidden xl:block absolute -right-20 top-20 w-64 glass p-6 rounded-3xl border-brand-accent/30 shadow-2xl z-20 pointer-events-none"
+                >
+                  <img 
+                    src={contentMap[persona].image} 
+                    className="w-full h-32 object-cover rounded-2xl mb-4 grayscale-[30%]" 
+                    alt="Preview"
+                    referrerPolicy="no-referrer"
+                  />
+                  <p className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-1">Inspirado por você</p>
+                  <p className="text-xs font-serif italic text-white/80 leading-snug">"{contentMap[persona].prova.slice(0, 80)}..."</p>
+                </motion.div>
+              </div>
             ) : (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -127,9 +170,7 @@ export default function LandingPage() {
                 className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative border border-white/10 group"
               >
                 <img 
-                  src={persona === "namoro" ? "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2000&auto=format&fit=crop" : 
-                       persona === "familia" ? "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2000&auto=format&fit=crop" :
-                       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2000&auto=format&fit=crop"} 
+                  src={contentMap[persona].image} 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[10s] grayscale-[20%]"
                   alt="Personalized Recommendation"
                   referrerPolicy="no-referrer"
@@ -149,33 +190,39 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Audio Samples Section */}
-      <section className="py-32 px-6 relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-serif italic font-black mb-6">Qual será o seu tom?</h2>
-            <p className="text-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold px-4">Ouça o que nossos artistas podem criar</p>
+      {/* Audio Samples Section - Now "Nossas Entregas" */}
+      <section className="py-20 md:py-32 px-6 relative border-t border-white/5 overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16 md:mb-24">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-serif italic font-black mb-6 tracking-tighter">Ouvir nossas Entregas</h2>
+            <p className="text-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-black px-4 max-w-2xl mx-auto leading-relaxed">
+              Ouça e sinta a qualidade das produções que já emocionaram centenas de pessoas como você.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
-            {[
-              { name: "Acústico Voz & Violão", desc: "Perfeito para momentos íntimos e delicados.", mood: "Emocionante" },
-              { name: "MPB Contemporânea", desc: "Ritmo leve e poético para celebrar a vida.", mood: "Alegre" },
-              { name: "Piano & Orquestra", desc: "Grandioso e épico para grandes homenagens.", mood: "Solene" }
-            ].map((style, idx) => (
-              <div key={idx} className="glass p-6 md:p-10 rounded-3xl md:rounded-[3rem] hover:bg-white/10 transition-all group flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8 text-brand-accent group-hover:scale-110 transition-transform">
-                  <Music size={32} />
-                </div>
-                <h3 className="text-2xl font-serif italic font-bold mb-4">{style.name}</h3>
-                <p className="text-white/50 mb-8 text-sm leading-relaxed font-light">{style.desc}</p>
-                <div className="flex flex-col items-center gap-6 mt-auto">
-                  <span className="text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em] px-4 py-1.5 bg-brand-accent/10 rounded-full border border-brand-accent/20">{style.mood}</span>
-                  <button className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
-                    <Play size={24} fill="currentColor" />
-                  </button>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 mb-20 md:mb-32">
+            {contentMap[persona].deliveries.map((id, idx) => (
+              <DeliveryShorts 
+                key={`${persona}-${idx}`} 
+                videoId={id} 
+                title={
+                  persona === "namoro" ? "Uma história de amor real" :
+                  persona === "amigo" ? "Amizade que virou música" :
+                  persona === "familia" ? "Família reunida no refrão" :
+                  "Uma produção exclusiva Aura"
+                }
+              />
+            ))}
+            {/* If there are fewer than 4 deliveries, fill with placeholders or general ones */}
+            {contentMap[persona].deliveries.length < 4 && Array.from({ length: 4 - contentMap[persona].deliveries.length }).map((_, i) => (
+              <DeliveryShorts 
+                key={`empty-${i}`} 
+                videoId="" 
+                title="Sua música pode estar aqui" 
+              />
             ))}
           </div>
 
@@ -224,6 +271,7 @@ export default function LandingPage() {
                             <div className="text-4xl font-black text-brand-light">
                                 <span className="text-lg text-white/40 font-medium align-top">por R$</span>97<span className="text-lg text-white/40 font-medium">,90</span>
                             </div>
+                            <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest mt-1">ou em até 3x sem juros</p>
                         </div>
 
                         <ul className="space-y-4 mb-8">
@@ -275,6 +323,7 @@ export default function LandingPage() {
                             <div className="text-4xl font-black text-brand-accent">
                                 <span className="text-lg text-brand-accent font-medium align-top">por R$</span>197<span className="text-lg text-brand-accent font-medium">,90</span>
                             </div>
+                            <p className="text-[10px] text-brand-accent/60 font-bold uppercase tracking-widest mt-1">ou em até 5x sem juros</p>
                         </div>
 
                         <ul className="space-y-4 mb-8">
@@ -330,6 +379,7 @@ export default function LandingPage() {
                             <div className="text-4xl font-black text-brand-light">
                                 <span className="text-lg text-white/40 font-medium align-top">por R$</span>347<span className="text-lg text-white/40 font-medium">,90</span>
                             </div>
+                            <p className="text-[10px] text-brand-accent font-bold uppercase tracking-widest mt-1">ou em até 10x sem juros</p>
                         </div>
 
                         <ul className="space-y-4 mb-8">
@@ -401,14 +451,22 @@ export default function LandingPage() {
       <footer className="py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold">
         <div className="max-w-4xl mx-auto">
           <p className="mb-2">© 2026 Aura Musical</p>
-          <p className="mb-8 opacity-50 font-normal normal-case tracking-normal">
-            Site desenvolvido e administrado por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">Orvalia Studio</a>
+          <p className="mb-8 opacity-50 font-normal uppercase tracking-widest text-[8px]">
+            SITE DESENVOLVIDO E ADMINISTRADO POR <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">ORVALIA STUDIO</a>
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
             <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
             <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
             <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
             <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
+          </div>
+          <div className="flex justify-center gap-6 mb-8">
+            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <Instagram size={20} />
+            </a>
+            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <MessageCircle size={20} />
+            </a>
           </div>
           <p className="max-w-xl mx-auto opacity-50 font-normal normal-case leading-relaxed">
             As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com
