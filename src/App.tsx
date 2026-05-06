@@ -9,8 +9,8 @@ const AnalisePage = lazy(() => import("./components/AnalisePage"));
 
 export default function App() {
   return (
-    <HashRouter>
-      <div className="bg-brand-bg min-h-screen">
+  <HashRouter>
+      <div className="bg-brand-bg min-h-screen selection:bg-brand-accent selection:text-black">
         <AnimatePresence mode="wait">
           <Suspense fallback={<div className="min-h-screen bg-brand-bg flex items-center justify-center"><div className="w-12 h-12 rounded-full border-t-2 border-brand-accent animate-spin" /></div>}>
             <Routes>

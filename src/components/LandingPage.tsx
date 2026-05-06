@@ -94,12 +94,12 @@ export default function LandingPage() {
               <Zap size={12} fill="currentColor" /> Produção Artesanal: Somente 5 vagas para esta semana
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif italic font-black text-white mb-6 md:mb-10 leading-[1.1] md:leading-[0.9]">
-              Não é só uma música.<br className="hidden md:block" />É uma <span className="text-brand-accent italic underline decoration-brand-accent/30">memória eterna</span>.
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif italic font-black text-white mb-6 md:mb-10 leading-[1.1] md:leading-[1] tracking-tighter">
+              Não é só uma música.<br className="hidden md:block" />É uma <span className="text-brand-accent italic underline underline-offset-8 decoration-brand-accent/20">memória eterna</span>.
             </h1>
 
-            <p className="text-white/40 max-w-xl text-base md:text-xl font-medium leading-relaxed mb-8 md:mb-12">
-              Transformamos sua história, apelidos e detalhes únicos em uma canção profissional digna de rádio. <span className="text-white">O presente que arranca lágrimas e dura para sempre.</span>
+            <p className="text-white/50 max-w-xl text-base md:text-xl font-medium leading-relaxed mb-10 md:mb-12">
+              Transformamos sua história, apelidos e detalhes únicos em uma canção profissional digna de rádio. <span className="text-white font-bold">O presente que arranca lágrimas e dura para sempre.</span>
             </p>
 
             <div className="space-y-4 md:space-y-6 mt-10 md:mt-16">
@@ -383,7 +383,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold">
         <p className="mb-6">© 2026 Aura Musical • CNPJ 00.000.000/0001-00</p>
-        <div className="flex justify-center gap-12">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-12">
           <a href="#" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
           <a href="#" className="hover:text-brand-accent transition-colors">Termos</a>
           <a href="#" className="hover:text-brand-accent transition-colors">Privacidade</a>

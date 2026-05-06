@@ -77,7 +77,7 @@ export default function ObrigadoPage() {
     try {
       // 1. Tenta enviar para o backend local (funciona no ambiente de dev/servidor customizado)
       // 2. Se falhar ou estiver em ambiente estático, tenta enviar direto para o Make/Webhook
-      const webhookUrl = (import.meta as any).env.VITE_MAKE_WEBHOOK_URI;
+      const webhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URI;
       
       let response;
       
@@ -119,8 +119,24 @@ export default function ObrigadoPage() {
   const styleOptions = ["Romântico", "Pop", "Acústico", "Sertanejo", "Gospel", "Outro"];
 
   return (
-    <div className="min-h-screen bg-brand-bg text-white font-sans atmosphere-bg flex flex-col items-center py-12 px-4 sm:px-6">
+    <div className="min-h-screen bg-brand-bg text-white font-sans atmosphere-bg flex flex-col items-center py-8 md:py-12 px-4 sm:px-6">
       <div className="max-w-3xl w-full">
+        {/* Progress Stepper */}
+        <div className="flex items-center justify-between mb-12 max-w-sm mx-auto">
+          {[1, 2, 3].map((s) => (
+            <React.Fragment key={s}>
+              <div className="flex flex-col items-center gap-2">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black border transition-all ${step >= s ? 'bg-brand-accent border-brand-accent text-black scale-110 shadow-[0_0_15px_rgba(212,175,55,0.4)]' : 'bg-white/5 border-white/10 text-white/20'}`}>
+                  {step > s ? <CheckCircle2 size={16} /> : s}
+                </div>
+                <span className={`text-[8px] uppercase tracking-widest font-bold ${step >= s ? 'text-brand-accent' : 'text-white/20'}`}>
+                  {s === 1 ? 'Confirmação' : s === 2 ? 'Briefing' : 'Concluído'}
+                </span>
+              </div>
+              {s < 3 && <div className={`flex-1 h-[1px] mb-4 transition-colors ${step > s ? 'bg-brand-accent' : 'bg-white/5'}`} />}
+            </React.Fragment>
+          ))}
+        </div>
         
         {step === 1 && (
           <motion.div 
