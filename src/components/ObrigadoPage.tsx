@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2, ChevronRight, Music, Clock, User, Heart, Mic2, Star, Send, HelpCircle, ChevronDown } from "lucide-react";
 
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
-  const [isOpen, setIsOpen] = useState(false);
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onToggle }) => {
   return (
     <div className="border-b border-white/5 last:border-0">
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onToggle}
         className="w-full py-5 flex items-center justify-between text-left group transition-colors"
       >
         <span className="text-sm font-bold text-white/80 group-hover:text-brand-accent transition-colors">{question}</span>
@@ -27,6 +33,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 export default function ObrigadoPage() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -68,14 +75,31 @@ export default function ObrigadoPage() {
     setIsSubmitting(true);
 
     try {
-      // ENVIANDO PARA O BACKEND
-      const response = await fetch("/api/briefing", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // 1. Tenta enviar para o backend local (funciona no ambiente de dev/servidor customizado)
+      // 2. Se falhar ou estiver em ambiente estático, tenta enviar direto para o Make/Webhook
+      const webhookUrl = (import.meta as any).env.VITE_MAKE_WEBHOOK_URI;
+      
+      let response;
+      
+      if (webhookUrl) {
+        // Envio direto para o Make (Ideal para GitHub Pages / Hospedagem estática)
+        response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            timestamp: new Date().toISOString(),
+            source: "Aura Musical - Site (Static)"
+          }),
+        });
+      } else {
+        // Envio para o backend interno
+        response = await fetch("/api/briefing", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      }
 
       if (response.ok) {
         setStep(3);
@@ -411,26 +435,36 @@ export default function ObrigadoPage() {
           </div>
 
           <div className="glass p-6 md:p-8 rounded-[2rem] border border-white/10">
-            <FAQItem 
-              question="Quanto tempo leva para minha música ficar pronta?" 
-              answer="O prazo padrão de produção é de até 4 dias úteis. Caso você tenha adquirido o 'Fura-fila/Entrega Expressa', sua música e o briefing terão prioridade máxima, com entrega em até 12-24 horas úteis após o envio completo deste formulário." 
-            />
-            <FAQItem 
-              question="Como receberei a música finalizada?" 
-              answer="Você receberá um e-mail com o link para download dos arquivos em alta fidelidade (MP3/WAV), além da letra personalizada em PDF estilizado. Fique atento também à sua caixa de spam." 
-            />
-            <FAQItem 
-              question="Posso pedir alterações se eu não gostar da letra?" 
-              answer="Sim! Sua satisfação é nossa prioridade. Oferecemos suporte para revisões técnicas e de letra após a entrega, garantindo que a canção transmita exatamente o que você deseja." 
-            />
-            <FAQItem 
-              question="A música é realmente feita sob medida para mim?" 
-              answer="Com certeza. Cada composição é tratada de forma individual por nossa equipe de artistas e produtores, que transformam os detalhes que você enviou neste briefing em uma obra musical exclusiva." 
-            />
-            <FAQItem 
-              question="Tive um problema no pagamento ou no formulário, o que fazer?" 
-              answer="Não se preocupe. Entre em contato conosco imediatamente pelo e-mail auramusical@gmail.com informando seu número de pedido. Responderemos o mais rápido possível para ajudar." 
-            />
+            {[
+              {
+                question: "Quanto tempo leva para minha música ficar pronta?",
+                answer: "O prazo padrão de produção é de até 4 dias úteis. Caso você tenha adquirido o 'Fura-fila/Entrega Expressa', sua música e o briefing terão prioridade máxima, com entrega em até 12-24 horas úteis após o envio completo deste formulário."
+              },
+              {
+                question: "Como receberei a música finalizada?",
+                answer: "Você receberá um e-mail com o link para download dos arquivos em alta fidelidade (MP3/WAV), além da letra personalizada em PDF estilizado. Fique atento também à sua caixa de spam."
+              },
+              {
+                question: "Posso pedir alterações se eu não gostar da letra?",
+                answer: "Sim! Sua satisfação é nossa prioridade. Oferecemos suporte para revisões técnicas e de letra após a entrega, garantindo que a canção transmita exatamente o que você deseja."
+              },
+              {
+                question: "A música é realmente feita sob medida para mim?",
+                answer: "Com certeza. Cada composição é tratada de forma individual por nossa equipe de artistas e produtores, que transformam os detalhes que você enviou neste briefing em uma obra musical exclusiva."
+              },
+              {
+                question: "Tive um problema no pagamento ou no formulário, o que fazer?",
+                answer: "Não se preocupe. Entre em contato conosco imediatamente pelo e-mail auramusical@gmail.com informando seu número de pedido. Responderemos o mais rápido possível para ajudar."
+              }
+            ].map((item, index) => (
+              <FAQItem 
+                key={index}
+                question={item.question} 
+                answer={item.answer}
+                isOpen={openFaqIndex === index}
+                onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+              />
+            ))}
           </div>
         </motion.div>
 

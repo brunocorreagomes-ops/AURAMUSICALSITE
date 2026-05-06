@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 
 const LandingPage = lazy(() => import("./components/LandingPage"));
@@ -9,7 +9,7 @@ const AnalisePage = lazy(() => import("./components/AnalisePage"));
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="bg-brand-bg min-h-screen">
         <AnimatePresence mode="wait">
           <Suspense fallback={<div className="min-h-screen bg-brand-bg flex items-center justify-center"><div className="w-12 h-12 rounded-full border-t-2 border-brand-accent animate-spin" /></div>}>
@@ -22,6 +22,6 @@ export default function App() {
           </Suspense>
         </AnimatePresence>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
