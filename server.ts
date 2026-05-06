@@ -31,6 +31,36 @@ async function startServer() {
     });
   });
 
+  app.post("/api/briefing", async (req, res) => {
+    const briefingData = req.body;
+    
+    console.log("--- NOVO BRIEFING RECEBIDO ---");
+    console.log(JSON.stringify(briefingData, null, 2));
+    
+    // Automação via Make.com
+    const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...briefingData,
+            timestamp: new Date().toISOString(),
+            source: "Aura Musical - Site"
+          })
+        });
+        console.log("Briefing enviado para o Make.com com sucesso.");
+      } catch (error) {
+        console.error("Erro ao enviar para o Make.com:", error);
+      }
+    } else {
+      console.warn("Aviso: MAKE_WEBHOOK_URL não configurada nas variáveis de ambiente.");
+    }
+
+    res.status(200).json({ success: true, message: "Briefing recebido com sucesso!" });
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
