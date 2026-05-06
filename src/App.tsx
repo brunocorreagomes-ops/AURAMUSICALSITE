@@ -6,6 +6,10 @@ const LandingPage = lazy(() => import("./components/LandingPage"));
 const ObrigadoPage = lazy(() => import("./components/ObrigadoPage"));
 const PendentePage = lazy(() => import("./components/PendentePage"));
 const AnalisePage = lazy(() => import("./components/AnalisePage"));
+const SobreNosPage = lazy(() => import("./components/SobreNosPage"));
+const PrivacidadePage = lazy(() => import("./components/PrivacidadePage"));
+const TermosLegaisPage = lazy(() => import("./components/TermosLegaisPage"));
+const SuportePage = lazy(() => import("./components/SuportePage"));
 
 export default function App() {
   return (
@@ -18,6 +22,10 @@ export default function App() {
               <Route path="/obrigado" element={<ObrigadoPage />} />
               <Route path="/pendente" element={<PendentePage />} />
               <Route path="/analise" element={<AnalisePage />} />
+              <Route path="/sobre-nos" element={<SobreNosPage />} />
+              <Route path="/privacidade" element={<PrivacidadePage />} />
+              <Route path="/termos-legais" element={<TermosLegaisPage />} />
+              <Route path="/suporte" element={<SuportePage />} />
             </Routes>
           </Suspense>
         </AnimatePresence>

@@ -399,12 +399,20 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold">
-        <p className="mb-6">© 2026 Aura Musical • CNPJ 00.000.000/0001-00</p>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-12">
-          <a href="#" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
-          <a href="#" className="hover:text-brand-accent transition-colors">Termos</a>
-          <a href="#" className="hover:text-brand-accent transition-colors">Privacidade</a>
-          <a href="#" className="hover:text-brand-accent transition-colors">Suporte</a>
+        <div className="max-w-4xl mx-auto">
+          <p className="mb-2">© 2026 Aura Musical</p>
+          <p className="mb-8 opacity-50 font-normal normal-case tracking-normal">
+            Site desenvolvido e administrado por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">Orvalia Studio</a>
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
+            <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
+            <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
+            <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
+            <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
+          </div>
+          <p className="max-w-xl mx-auto opacity-50 font-normal normal-case leading-relaxed">
+            As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com
+          </p>
         </div>
       </footer>
     </div>

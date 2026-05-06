@@ -80,14 +80,33 @@ export default function AnalisePage() {
 
         <div className="mt-16 flex flex-col items-center gap-6">
            <p className="text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">Aura Musical • Memórias em Melodia</p>
-           <button 
-             onClick={() => window.location.href = '/'}
+           <a 
+             href="#/"
              className="text-brand-accent text-xs font-bold uppercase tracking-widest hover:underline underline-offset-8"
            >
              Voltar para o Início
-           </button>
+           </a>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="w-full py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold mt-20">
+        <div className="max-w-4xl mx-auto">
+          <p className="mb-2">© 2026 Aura Musical</p>
+          <p className="mb-8 opacity-50 font-normal normal-case tracking-normal">
+            Site desenvolvido e administrado por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">Orvalia Studio</a>
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
+            <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
+            <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
+            <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
+            <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
+          </div>
+          <p className="max-w-xl mx-auto opacity-50 font-normal normal-case leading-relaxed">
+            As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
