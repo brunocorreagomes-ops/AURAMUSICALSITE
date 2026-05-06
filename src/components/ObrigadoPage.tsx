@@ -82,16 +82,21 @@ export default function ObrigadoPage() {
       const webhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URI;
       let response;
       
-      // Sempre tenta o backend primeiro para logs e redundância,
-      // a menos que estejamos em um ambiente comprovadamente estático sem backend.
+      // Tenta o backend primeiro
       try {
         response = await fetch("/api/briefing", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
+        
+        // Se a resposta não for OK (ex: 404 em ambiente estático), tenta o fallback direto no catch ou abaixo
+        if (!response.ok) {
+          throw new Error(`Backend API returned ${response.status}`);
+        }
       } catch (serverError) {
-        console.warn("Backend API not reachable, trying direct webhook if available:", serverError);
+        console.warn("Backend API failed or not reachable, trying direct webhook fallback:", serverError);
+        
         if (webhookUrl) {
           const makeApiKey = import.meta.env.VITE_MAKE_API_KEY;
           const headers: Record<string, string> = { "Content-Type": "application/json" };
@@ -109,6 +114,7 @@ export default function ObrigadoPage() {
             }),
           });
         } else {
+          // Se não houver webhook de fallback, repassa o erro original
           throw serverError;
         }
       }
@@ -117,8 +123,9 @@ export default function ObrigadoPage() {
         setStep(3);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        const errorData = response ? await response.text() : "Sem resposta do servidor";
-        throw new Error(`Falha ao enviar briefing: ${response?.status} - ${errorData}`);
+        const status = response?.status || "Unknown";
+        const errorText = response ? await response.text().catch(() => "Erro desconhecido") : "Sem resposta";
+        throw new Error(`Falha definitiva no envio (Status ${status}): ${errorText}`);
       }
     } catch (error) {
       console.error("Erro completo no envio:", error);
