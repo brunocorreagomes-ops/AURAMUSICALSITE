@@ -15,24 +15,7 @@ export default function DeliveryShorts({ videoId, title, label }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && window.innerWidth < 768) {
-            setIsPlaying(true);
-          } else if (!entry.isIntersecting && window.innerWidth < 768) {
-            setIsPlaying(false);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
+    // We removed auto-play on mobile to avoid browser blocks on sound
   }, []);
 
   const handleTogglePlay = (e: React.MouseEvent) => {
@@ -42,11 +25,10 @@ export default function DeliveryShorts({ videoId, title, label }: Props) {
 
   // YouTube Shorts embed URL
   // We use the embed endpoint with autoplay=1 and mute=0 when playing
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=0&controls=0&loop=1&playlist=${videoId}&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=0&controls=0&loop=1&playlist=${videoId}&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1`;
 
   return (
     <div 
-      ref={containerRef}
       className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 group cursor-pointer"
       onClick={handleTogglePlay}
     >
@@ -60,12 +42,22 @@ export default function DeliveryShorts({ videoId, title, label }: Props) {
         </div>
       ) : (
         <>
-          <iframe
-            src={embedUrl}
-            className={`w-full h-full pointer-events-none transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-40 grayscale-[50%]'}`}
-            allow="autoplay; encrypted-media"
-            title={title}
-          />
+          {isPlaying ? (
+            <iframe
+              src={embedUrl}
+              className="w-full h-full pointer-events-none transition-opacity duration-500 opacity-100"
+              allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              title={title}
+            />
+          ) : (
+            <div className="w-full h-full bg-black/20 flex items-center justify-center">
+               <img 
+                 src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} 
+                 className="w-full h-full object-cover opacity-60 grayscale-[30%]"
+                 alt={title}
+               />
+            </div>
+          )}
           
           <AnimatePresence>
             {!isPlaying && (
