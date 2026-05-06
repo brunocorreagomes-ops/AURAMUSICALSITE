@@ -2,8 +2,8 @@ export type Persona = "namoro" | "amigo" | "familia" | "geral"
 
 export const contentMap = {
   namoro: {
-    headline: "O presente que faz o coração bater no ritmo da sua história",
-    subheadline: "Surpreenda seu namorado(a) ou companheiro(a) com uma canção exclusiva que narra cada detalhe do amor de vocês.",
+    headline: "Imortalize sua história de Amor",
+    subheadline: "Surpreenda quem você ama com uma trilha sonora que narra cada detalhe da jornada de vocês.",
     exemplos: [
       {
         nome: "Nosso Jeito",
@@ -20,8 +20,8 @@ export const contentMap = {
   },
 
   amigo: {
-    headline: "Toda grande amizade tem histórias que merecem um refrão",
-    subheadline: "Transforme as piadas internas, as viagens e as loucuras em uma música profissional feita para o seu melhor amigo(a).",
+    headline: "Transforme sua amizade em Música",
+    subheadline: "Transforme as piadas internas e as aventuras em uma música foda feita exclusivamente para o seu melhor amigo.",
     exemplos: [
       {
         nome: "Resenha Infinita",
@@ -34,8 +34,8 @@ export const contentMap = {
   },
 
   familia: {
-    headline: "O abraço em forma de música que sua família nunca vai esquecer",
-    subheadline: "Homenageie pais, avós ou filhos com uma canção que celebra as raízes e o amor incondicional da sua família.",
+    headline: "Homenageie quem você mais Ama",
+    subheadline: "Homenageie quem sempre esteve lá com uma canção que celebra as raízes e o amor incondicional.",
     exemplos: [
       {
         nome: "Base de Tudo",
@@ -48,8 +48,8 @@ export const contentMap = {
   },
 
   geral: {
-    headline: "Dê vida à sua história com uma produção musical de cinema",
-    subheadline: "Seja para um evento, uma formatura ou uma conquista pessoal, criamos a trilha sonora perfeita para qualquer momento.",
+    headline: "Sua história em uma Canção",
+    subheadline: "Para formaturas, conquistas ou momentos especiais: criamos a trilha sonora perfeita para honrar sua trajetória.",
     exemplos: [],
     prova: "Simplesmente inesquecível. Superou todas as minhas expectativas em termos de qualidade e emoção.",
     image: "https://i.ibb.co/Rp4X8PXq/GERAL-OUTRO-AURA.webp",

@@ -7,6 +7,7 @@ import { Persona, contentMap } from "./data";
 import BackToTop from "./BackToTop";
 import DeliveryShorts from "./DeliveryShorts";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function Testimonial({ name, text, role, highlight }: { name: string; text: string; role: string; highlight?: boolean }) {
   return (
@@ -22,8 +23,6 @@ function Testimonial({ name, text, role, highlight }: { name: string; text: stri
     </div>
   );
 }
-
-import Navbar from "./Navbar";
 
 export default function LandingPage() {
   const [persona, setPersona] = useState<Persona>("geral");
@@ -80,10 +79,10 @@ export default function LandingPage() {
           <motion.div
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
-             className="glass px-6 py-4 md:px-10 md:py-6 rounded-[2.5rem] border-brand-accent/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group"
+             className="glass px-6 py-8 md:px-12 md:py-10 rounded-[2.5rem] border-brand-accent/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group"
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-accent text-black text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest shadow-xl">
-              PASSO 1: ESCOLHA O PRESENTEAR
+              PASSO 1: O QUE VOCÊ DESEJA HOMENAGEAR?
             </div>
             <PersonaFilter activePersona={persona} onSelect={setPersona} />
           </motion.div>
@@ -101,14 +100,18 @@ export default function LandingPage() {
               <Zap size={12} fill="currentColor" /> Produção Artesanal: Somente 11 vagas para esta semana
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-[5.5rem] font-serif italic font-black text-white mb-8 leading-[1.05] tracking-tighter">
-              {contentMap[persona].headline.split(' ').map((word, i) => (
-                <span key={i} className={i % 3 === 2 ? "text-brand-accent" : ""}>{word} </span>
-              ))}
+            <h1 className="text-4xl sm:text-6xl md:text-[5.5rem] font-serif italic font-black text-white mb-8 leading-[1] tracking-tighter">
+              {contentMap[persona].headline.split(' ').map((word, i, arr) => {
+                // Highlight only the last word for maximum focus and impact
+                const isHighlight = i === arr.length - 1;
+                return (
+                  <span key={i} className={isHighlight ? "text-brand-accent drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]" : "text-white"}>{word} </span>
+                );
+              })}
             </h1>
 
-            <p className="text-white/50 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl font-medium leading-relaxed mb-10 md:mb-12">
-              {contentMap[persona].subheadline} <span className="text-white font-bold block mt-4">A trilha sonora da sua vida, produzida por artistas profissionais.</span>
+            <p className="text-white/60 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl font-medium leading-relaxed mb-10 md:mb-12">
+              {contentMap[persona].subheadline} <span className="text-brand-accent font-black block mt-4 border-l-2 border-brand-accent pl-4">A trilha sonora da sua vida, produzida por artistas profissionais.</span>
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
@@ -154,21 +157,21 @@ export default function LandingPage() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative border border-white/10 group"
+                className="aspect-video md:aspect-[16/10] max-w-xl mx-auto rounded-3xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative border border-white/10 group"
               >
                 <img 
                   src={contentMap[persona].image} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[10s] grayscale-[20%]"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[10s]"
                   alt="Personalized Recommendation"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-bg via-transparent to-transparent flex flex-col justify-end p-10">
-                   <div className="glass p-8 rounded-3xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-6 md:p-10">
+                   <div className="glass p-6 md:p-8 rounded-2xl md:rounded-3xl border-brand-accent/20">
                       <p className="text-brand-accent text-[10px] font-black uppercase tracking-widest mb-2">Recomendação Personalizada</p>
-                      <h4 className="text-2xl font-serif italic font-black text-white mb-4">
+                      <h4 className="text-xl md:text-2xl font-serif italic font-black text-white mb-4">
                         Uma composição {quizResults?.vibe === 'romantica' ? 'romântica' : quizResults?.vibe === 'engracada' ? 'divertida' : 'única'} em estilo {quizResults?.estilo === 'acustico' ? 'Acústico' : quizResults?.estilo === 'piano' ? 'Piano & Orquestra' : quizResults?.estilo === 'pop' ? 'Pop' : 'Sertanejo'}.
                       </h4>
-                      <button onClick={handleStart} className="w-full py-4 bg-brand-accent text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg hover:shadow-[0_0_20px_#D4AF3744] transition-all">Começar agora</button>
+                      <button onClick={handleStart} className="w-full py-4 md:py-5 bg-brand-accent text-black rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs shadow-lg hover:brightness-110 transition-all">Começar agora</button>
                    </div>
                 </div>
               </motion.div>
@@ -434,32 +437,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-20 px-6 bg-brand-bg text-white/20 text-[10px] text-center border-t border-white/5 uppercase tracking-[0.2em] font-bold">
-        <div className="max-w-4xl mx-auto">
-          <p className="mb-2">© 2026 Aura Musical</p>
-          <p className="mb-8 opacity-50 font-normal uppercase tracking-widest text-[8px]">
-            SITE DESENVOLVIDO E ADMINISTRADO POR <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">ORVALIA STUDIO</a>
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
-            <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
-            <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
-            <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
-            <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
-          </div>
-          <div className="flex justify-center gap-6 mb-8">
-            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <Instagram size={20} />
-            </a>
-            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <MessageCircle size={20} />
-            </a>
-          </div>
-          <p className="max-w-xl mx-auto opacity-50 font-normal normal-case leading-relaxed">
-            As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

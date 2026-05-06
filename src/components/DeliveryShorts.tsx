@@ -5,6 +5,7 @@ import { Play, Volume2, VolumeX } from 'lucide-react';
 interface Props {
   videoId: string;
   title: string;
+  key?: string | number;
 }
 
 export default function DeliveryShorts({ videoId, title }: Props) {

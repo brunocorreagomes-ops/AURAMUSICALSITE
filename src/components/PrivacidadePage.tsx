@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Shield, Lock, Eye, FileText, Mail } from "lucide-react";
 import BackToTop from "./BackToTop";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function PrivacidadePage() {
   const sections = [
@@ -11,6 +12,22 @@ export default function PrivacidadePage() {
     { id: "direitos", title: "Seus direitos (LGPD)", icon: <FileText size={18} /> },
     { id: "contato", title: "Contato — DPO", icon: <Mail size={18} /> }
   ];
+
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100; // Account for sticky header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans selection:bg-brand-accent selection:text-black">
@@ -32,10 +49,14 @@ export default function PrivacidadePage() {
           <div className="text-[10px] uppercase tracking-[0.3em] font-black text-white/40 mb-8">Nesta Página</div>
           <nav className="space-y-2">
             {sections.map(s => (
-                <a key={s.id} href={`#${s.id}`} className="flex items-center gap-3 p-3 text-xs font-bold text-white/40 hover:bg-white/[0.05] hover:text-brand-accent rounded-lg transition-all group">
+                <button 
+                  key={s.id} 
+                  onClick={() => scrollToId(s.id)} 
+                  className="w-full flex items-center gap-3 p-3 text-xs font-bold text-white/40 hover:bg-white/[0.05] hover:text-brand-accent rounded-lg transition-all group text-left cursor-pointer"
+                >
                     <span className="text-brand-accent group-hover:scale-110 transition-transform">{s.icon}</span>
                     {s.title}
-                </a>
+                </button>
             ))}
           </nav>
         </aside>
@@ -130,31 +151,7 @@ export default function PrivacidadePage() {
         </main>
       </div>
 
-      <footer className="bg-brand-bg py-20 px-6 text-center text-white/20 text-[10px] font-bold uppercase tracking-[0.3em] border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <p className="mb-2">© 2026 Aura Musical</p>
-          <p className="mb-8 opacity-50 font-normal uppercase tracking-widest text-[8px]">
-            SITE DESENVOLVIDO E ADMINISTRADO POR <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold">ORVALIA STUDIO</a>
-          </p>
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-10">
-              <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
-              <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
-              <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos Legais</a>
-              <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
-          </div>
-          <div className="flex justify-center gap-6 mb-10">
-            <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <Instagram size={20} />
-            </a>
-            <a href="https://wa.me/5511978959567?text=Olá!%20Vim%20pelo%20site%20da%20Aura%20Musical%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
-              <MessageCircle size={20} />
-            </a>
-          </div>
-          <p className="max-w-xl mx-auto opacity-40 font-normal normal-case leading-relaxed">
-            As músicas criadas pela Aura Musical destinam-se exclusivamente ao uso pessoal e não comercial. Para licenças comerciais ou corporativas, entre em contato através do e-mail auramusical@gmail.com
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

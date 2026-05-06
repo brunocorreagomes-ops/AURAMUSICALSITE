@@ -15,7 +15,7 @@ export default function PersonaFilter({ activePersona, onSelect }: Props) {
   ]
 
   return (
-    <div className="flex gap-3 flex-wrap justify-center mb-12">
+    <div className="flex gap-3 flex-wrap justify-center">
       {options.map((opt) => (
         <button
           key={opt.id}
