@@ -181,12 +181,12 @@ export default function ObrigadoPage() {
             animate={{ opacity: 1, x: 0 }}
             className="glass p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white/10"
           >
-            <div className="flex items-center justify-between mb-8 border-b border-white/10 pb-6">
-              <div>
-                <h2 className="text-2xl font-serif italic font-black text-brand-light">Briefing Musical</h2>
-                <p className="text-brand-accent text-[10px] uppercase tracking-widest font-bold mt-1">Transformando sua história em arte</p>
+            <div className="flex flex-col md:flex-row items-center justify-between mb-8 border-b border-white/10 pb-6 gap-4">
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-serif italic font-black text-brand-light">Briefing Musical</h2>
+                <p className="text-brand-accent text-[10px] md:text-xs uppercase tracking-widest font-bold mt-1">Transformando sua história em arte</p>
               </div>
-              <div className="hidden sm:flex items-center gap-2 text-white/40 text-[10px] uppercase tracking-widest px-4 py-2 rounded-full border border-white/5 bg-white/5">
+              <div className="flex items-center gap-2 text-white/40 text-[10px] uppercase tracking-widest px-4 py-2 rounded-full border border-white/5 bg-white/5 whitespace-nowrap">
                 <Clock size={12} /> Prazo inicia após o envio
               </div>
             </div>
@@ -198,19 +198,19 @@ export default function ObrigadoPage() {
                   <User size={18} />
                   <h3 className="text-sm uppercase tracking-[0.2em] font-black">1. Identificação</h3>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Nome Completo</label>
-                    <input required name="fullName" value={formData.fullName} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Seu nome" />
+                    <input required name="fullName" value={formData.fullName} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Seu nome" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">E-mail (usado na compra)</label>
-                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="email@exemplo.com" />
+                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="email@exemplo.com" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Número do Pedido (Opcional)</label>
-                  <input name="orderNumber" value={formData.orderNumber} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: HP123456789" />
+                  <input name="orderNumber" value={formData.orderNumber} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: HP123456789" />
                 </div>
               </div>
 
@@ -222,25 +222,25 @@ export default function ObrigadoPage() {
                 </div>
                 <div className="space-y-4">
                   <p className="text-sm text-white/80 ml-2">Para quem essa música será criada?</p>
-                  <div className="flex flex-wrap gap-4">
-                    <button type="button" onClick={() => setFormData({...formData, receiverType: 'mim'})} className={`px-8 py-3 rounded-full text-xs font-bold transition-all border ${formData.receiverType === 'mim' ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
+                  <div className="flex flex-wrap gap-3 md:gap-4">
+                    <button type="button" onClick={() => setFormData({...formData, receiverType: 'mim'})} className={`px-6 md:px-8 py-3 rounded-full text-[10px] md:text-xs font-bold transition-all border ${formData.receiverType === 'mim' ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
                       Para mim
                     </button>
-                    <button type="button" onClick={() => setFormData({...formData, receiverType: 'outra_pessoa'})} className={`px-8 py-3 rounded-full text-xs font-bold transition-all border ${formData.receiverType === 'outra_pessoa' ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
+                    <button type="button" onClick={() => setFormData({...formData, receiverType: 'outra_pessoa'})} className={`px-6 md:px-8 py-3 rounded-full text-[10px] md:text-xs font-bold transition-all border ${formData.receiverType === 'outra_pessoa' ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
                       Para outra pessoa
                     </button>
                   </div>
                 </div>
 
                 {formData.receiverType === 'outra_pessoa' && (
-                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="grid md:grid-cols-2 gap-6">
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-2">
                       <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Nome da Pessoa</label>
-                      <input required name="receiverName" value={formData.receiverName} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Laura" />
+                      <input required name="receiverName" value={formData.receiverName} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Laura" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Relação com você</label>
-                      <input required name="relationship" value={formData.relationship} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Namorado, mãe, amigo" />
+                      <input required name="relationship" value={formData.relationship} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Namorado, mãe, amigo" />
                     </div>
                   </motion.div>
                 )}
@@ -254,9 +254,9 @@ export default function ObrigadoPage() {
                 </div>
                 
                 <div className="space-y-3">
-                  <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Qual é a história ou momento que quer transformar em música?</label>
+                  <label className="text-xs md:text-sm text-white/80 ml-2">Qual é a história ou momento que quer transformar em música?</label>
                   <p className="text-[10px] text-brand-accent/60 italic ml-4 mb-2">Dica: Conte detalhes, momentos marcantes, sentimentos e qualquer informação importante.</p>
-                  <textarea required name="context" value={formData.context} onChange={handleChange} rows={6} className="w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors resize-none" placeholder="Conte aqui sua história..."></textarea>
+                  <textarea required name="context" value={formData.context} onChange={handleChange} rows={6} className="w-full bg-white/5 border border-white/10 rounded-3xl px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors resize-none" placeholder="Conte aqui sua história..."></textarea>
                 </div>
 
                 <div className="space-y-4">
@@ -281,7 +281,7 @@ export default function ObrigadoPage() {
                   <h3 className="text-sm uppercase tracking-[0.2em] font-black">4. Estilo e Preferências</h3>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Estilo Musical</label>
                     <div className="flex flex-wrap gap-2">
@@ -310,7 +310,7 @@ export default function ObrigadoPage() {
 
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Referências (Opcional)</label>
-                  <input name="references" value={formData.references} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-xs text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Link do YouTube ou Spotify (música que você gosta)" />
+                  <input name="references" value={formData.references} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-[10px] md:text-xs text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Link do YouTube ou Spotify (música que você gosta)" />
                 </div>
               </div>
 
@@ -323,31 +323,31 @@ export default function ObrigadoPage() {
 
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Frases ou palavras obrigatórias</label>
-                  <input name="specificDetails" value={formData.specificDetails} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Citar a gata 'Nina' ou a frase 'Até a lua'" />
+                  <input name="specificDetails" value={formData.specificDetails} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Citar a gata 'Nina' ou a frase 'Até a lua'" />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Nomes que devem aparecer citados</label>
-                  <input name="namesInMusic" value={formData.namesInMusic} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Cláudio, Maria Eduarda..." />
+                  <input name="namesInMusic" value={formData.namesInMusic} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-full px-5 md:px-6 py-4 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ex: Cláudio, Maria Eduarda..." />
                 </div>
 
                 <div className="space-y-4 pt-4">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-4">Você adquiriu entrega expressa (24h)?</label>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-3 md:gap-4">
                     {["Sim", "Não", "Não tenho certeza"].map((opt) => (
-                      <button key={opt} type="button" onClick={() => setFormData({...formData, isExpress: opt})} className={`px-6 py-3 rounded-full text-[10px] font-bold transition-all border ${formData.isExpress === opt ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
+                      <button key={opt} type="button" onClick={() => setFormData({...formData, isExpress: opt})} className={`px-5 md:px-6 py-3 rounded-full text-[10px] font-bold transition-all border ${formData.isExpress === opt ? 'bg-brand-accent text-black border-brand-accent' : 'bg-white/5 border-white/10 text-white hover:border-white/30'}`}>
                         {opt}
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div className="p-6 bg-brand-accent/5 rounded-[2rem] border border-brand-accent/20 flex items-start gap-4 cursor-pointer hover:bg-brand-accent/10 transition-colors" onClick={() => setFormData({...formData, finalConfirmation: !formData.finalConfirmation})}>
-                  <div className={`w-6 h-6 rounded-md border-2 shrink-0 flex items-center justify-center transition-all ${formData.finalConfirmation ? 'bg-brand-accent border-brand-accent' : 'border-white/20'}`}>
-                    {formData.finalConfirmation && <CheckCircle2 size={16} className="text-black" />}
+                <div className="p-4 md:p-6 bg-brand-accent/5 rounded-2xl md:rounded-[2rem] border border-brand-accent/20 flex items-start gap-3 md:gap-4 cursor-pointer hover:bg-brand-accent/10 transition-colors" onClick={() => setFormData({...formData, finalConfirmation: !formData.finalConfirmation})}>
+                  <div className={`w-5 h-5 md:w-6 md:h-6 rounded-md border-2 shrink-0 flex items-center justify-center transition-all ${formData.finalConfirmation ? 'bg-brand-accent border-brand-accent' : 'border-white/20'}`}>
+                    {formData.finalConfirmation && <CheckCircle2 size={14} className="text-black" />}
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white mb-1">Confirma que todas as informações acima estão corretas?</p>
+                    <p className="text-[10px] md:text-xs font-bold text-white mb-1">Confirma que todas as informações acima estão corretas?</p>
                     <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-wider">A produção será baseada exatamente nestas informações enviadas.</p>
                   </div>
                   <input type="checkbox" name="finalConfirmation" checked={formData.finalConfirmation} onChange={handleChange} className="hidden" />
