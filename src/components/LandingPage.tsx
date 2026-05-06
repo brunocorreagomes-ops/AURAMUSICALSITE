@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Play, Star, ChevronRight, CheckCircle2, Music, Heart, MemoryStick as Memory, MessageSquare, Sparkles, Zap, ShieldCheck, Clock } from "lucide-react";
 import PersonaFilter from "./PersonaFilter";
@@ -25,6 +25,24 @@ export default function LandingPage() {
   const [persona, setPersona] = useState<Persona>("geral");
   const [quizDone, setQuizDone] = useState(false);
   const [quizResults, setQuizResults] = useState<any>(null);
+
+  useEffect(() => {
+    // Load Hotmart Widget
+    const script = document.createElement('script');
+    script.src = 'https://static.hotmart.com/checkout/widget.min.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+    document.head.appendChild(link);
+
+    return () => {
+      // Clean up if necessary, though scripts usually stay
+    };
+  }, []);
 
   const handleStart = () => {
     // scroll to pricing section
@@ -196,28 +214,42 @@ export default function LandingPage() {
                 {/* Start Plan 1 */}
                 <div className="glass p-8 md:p-10 rounded-3xl flex flex-col group hover:border-brand-accent/30 transition-colors border border-white/10">
                     <div className="mb-8 flex-1">
-                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Acústico Elegance</h3>
-                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-black mb-6">Música Básico</p>
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">AURA MUSICAL BASICO</h3>
+                        <p className="text-xs text-white/60 mb-6 font-light leading-relaxed">
+                            Ideal para quem deseja uma música personalizada de forma rápida, acessível e com excelente qualidade.
+                        </p>
                         
-                        <div className="text-4xl font-black text-brand-light mb-8 font-sans">
-                            <span className="text-lg text-white/40 font-medium align-top">R$</span>197<span className="text-lg text-white/40 font-medium">,00</span>
+                        <div className="mb-8 font-sans">
+                            <p className="text-sm text-white/40 line-through mb-1">De R$ 147,90</p>
+                            <div className="text-4xl font-black text-brand-light">
+                                <span className="text-lg text-white/40 font-medium align-top">por R$</span>97<span className="text-lg text-white/40 font-medium">,90</span>
+                            </div>
                         </div>
 
                         <ul className="space-y-4 mb-8">
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Música personalizada (Voz & Violão)
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>1 música personalizada exclusiva</strong>, criada com base nas suas informações. Produção sob medida (letra + estrutura musical personalizada)</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Criação sob medida
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> Entrega em até 48 horas úteis
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Áudio em Alta Qualidade
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 1 revisão inclusa para ajustes pontuais
+                            </li>
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> Arquivo em alta qualidade (MP3 ou WAV) para download
                             </li>
                         </ul>
+
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/10 text-[10px] text-white/40 leading-tight">
+                            <strong className="text-brand-accent uppercase block mb-1">Importante:</strong>
+                            A produção é iniciada após a confirmação do pagamento e envio completo do briefing. Revisões não incluem alterações completas de tema ou estilo.
+                        </div>
                     </div>
                     
                     {/* Link Hotmart 1 */}
-                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                    <a href="https://pay.hotmart.com/P105694163K?off=gmocbhyn&checkoutMode=10" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] mt-6">
                         Comprar Agora
                     </a>
                 </div>
@@ -229,11 +261,11 @@ export default function LandingPage() {
                     </div>
 
                     <div className="mb-8 flex-1">
-                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Experiência Ouro</h3>
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">AURA MUSICAL POPULAR</h3>
                         <p className="text-[10px] text-brand-accent uppercase tracking-widest font-black mb-6">Arranjo Completo</p>
                         
                         <div className="text-4xl font-black text-brand-accent mb-8 font-sans">
-                            <span className="text-lg text-brand-accent font-medium align-top">R$</span>297<span className="text-lg text-brand-accent font-medium">,00</span>
+                            <span className="text-lg text-brand-accent font-medium align-top">R$</span>197<span className="text-lg text-brand-accent font-medium">,90</span>
                         </div>
 
                         <ul className="space-y-4 mb-8">
@@ -253,40 +285,72 @@ export default function LandingPage() {
                     </div>
                     
                     {/* Link Hotmart 2 */}
-                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-gold py-4 text-center text-xs shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)]">
-                        Comprar Experiência Ouro
+                    <a href="https://pay.hotmart.com/H105695281R?checkoutMode=2" className="w-full btn-gold py-4 text-center text-xs shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] hotmart-fb hotmart__button-checkout">
+                        Comprar Agora
                     </a>
                 </div>
 
                 {/* Start Plan 3 */}
                 <div className="glass p-8 md:p-10 rounded-3xl flex flex-col group hover:border-brand-accent/30 transition-colors border border-white/10">
                     <div className="mb-8 flex-1">
-                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">Diamante VIP</h3>
-                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-black mb-6">Combo Premium</p>
+                        <h3 className="text-2xl font-serif italic font-black mb-2 text-brand-light">AURA MUSICAL VIP</h3>
+                        <p className="text-xs text-white/60 mb-6 font-light leading-relaxed">
+                            Uma criação musical exclusiva, com máxima personalização, recursos premium e entrega prioritária.
+                        </p>
                         
-                        <div className="text-4xl font-black text-brand-light mb-8 font-sans">
-                            <span className="text-lg text-white/40 font-medium align-top">R$</span>497<span className="text-lg text-white/40 font-medium">,00</span>
+                        <div className="mb-8 font-sans">
+                            <p className="text-sm text-white/40 line-through mb-1">De R$ 497,90</p>
+                            <div className="text-4xl font-black text-brand-light">
+                                <span className="text-lg text-white/40 font-medium align-top">por R$</span>347<span className="text-lg text-white/40 font-medium">,90</span>
+                            </div>
                         </div>
 
                         <ul className="space-y-4 mb-8">
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Versão Principal + Instrumental
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>01 Música personalizada com nível avançado de produção</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Fura-fila (Entrega Expressa)
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>01 versão instrumental (playback) da música personalizada</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Revisões Ilimitadas
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>01 Letra em PDF estilizado (ideal para presente)</span>
                             </li>
-                            <li className="flex items-start gap-3 text-sm text-white/80">
-                                <CheckCircle2 size={16} className="text-brand-accent shrink-0 mt-0.5" /> Mensagem Narrada Bônus
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>01 Mensagem narrada bônus personalizada.</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>01 Vídeo com Música e Letra (lyric video) sincronizada (9:16)</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span><strong>Prioridade máxima:</strong> entrega em até 12 horas úteis</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-xs text-white/80">
+                                <CheckCircle2 size={14} className="text-brand-accent shrink-0 mt-0.5" /> 
+                                <span>Revisões ampliadas e parcelamento em até 10x no cartão</span>
                             </li>
                         </ul>
+
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/10 text-[10px] text-white/40 leading-tight space-y-2">
+                            <div>
+                                <strong className="text-brand-accent uppercase block mb-1">Diferencial:</strong>
+                                Experiência completa e versátil, ideal para ocasiões especiais e presentes premium.
+                            </div>
+                            <div>
+                                <strong className="text-brand-accent uppercase block mb-1">Condições:</strong>
+                                Produção iniciada após confirmação de pagamento e envio completo do briefing.
+                            </div>
+                        </div>
                     </div>
                     
                     {/* Link Hotmart 3 */}
-                    <a href="https://pay.hotmart.com/SEU_LINK_AQUI" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
-                        Comprar Diamante
+                    <a href="https://pay.hotmart.com/L105695305P?checkoutMode=2" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] mt-6 hotmart-fb hotmart__button-checkout">
+                        Comprar Agora
                     </a>
                 </div>
             </div>

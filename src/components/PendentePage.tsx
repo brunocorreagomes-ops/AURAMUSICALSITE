@@ -22,11 +22,7 @@ export default function PendentePage() {
           <ul className="space-y-4 text-sm text-white/60">
             <li className="flex items-start gap-3">
               <span className="text-brand-accent font-black mt-0.5">•</span> 
-              Se você pagou no <strong>Pix</strong> ou <strong>Cartão de Crédito</strong>, a confirmação costuma levar apenas alguns minutos.
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-brand-accent font-black mt-0.5">•</span> 
-              Se você gerou um <strong>Boleto</strong>, a compensação pode levar até 3 dias úteis.
+              Para pagamentos via <strong>Pix</strong> ou <strong>Cartão de Crédito</strong>, a confirmação geralmente ocorre de forma imediata ou em poucos minutos.
             </li>
           </ul>
         </div>
