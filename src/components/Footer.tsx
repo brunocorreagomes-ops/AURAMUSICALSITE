@@ -8,11 +8,12 @@ export default function Footer() {
         <p className="mb-8 opacity-50 font-normal uppercase tracking-widest text-[8px]">
           SITE DESENVOLVIDO E ADMINISTRADO POR <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold lowercase">orvalia studio</a>
         </p>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-12 mb-8 lowercase opacity-60">
+          <a href="#/" className="hover:text-brand-accent transition-colors">Início</a>
           <a href="#/sobre-nos" className="hover:text-brand-accent transition-colors">Sobre Nós</a>
+          <a href="#/suporte" className="hover:text-brand-accent transition-colors">Dúvidas</a>
           <a href="#/termos-legais" className="hover:text-brand-accent transition-colors">Termos</a>
           <a href="#/privacidade" className="hover:text-brand-accent transition-colors">Privacidade</a>
-          <a href="#/suporte" className="hover:text-brand-accent transition-colors">Suporte</a>
         </div>
         <div className="flex justify-center gap-6 mb-8">
           <a href="https://www.instagram.com/auramusicalbr/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">

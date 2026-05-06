@@ -25,7 +25,7 @@ export default function Navbar({ onCtaClick, isTransparent = false }: Props) {
         <a href="#/" className="hover:scale-110 transition-transform duration-500">
           <img 
             src="https://i.ibb.co/6cszB9X2/auralogo.png" 
-            className="w-20 h-20 md:w-28 md:h-28 object-contain" 
+            className="w-14 h-14 md:w-20 md:h-20 object-contain" 
             alt="Aura Musical Logo" 
             referrerPolicy="no-referrer" 
           />

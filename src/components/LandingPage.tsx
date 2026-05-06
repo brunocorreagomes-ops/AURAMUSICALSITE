@@ -79,7 +79,7 @@ export default function LandingPage() {
           <motion.div
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
-             className="glass px-6 py-8 md:px-12 md:py-10 rounded-[2.5rem] border-brand-accent/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group"
+             className="glass px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10 rounded-[2.5rem] border-brand-accent/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group"
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-accent text-black text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest shadow-xl">
               PASSO 1: O QUE VOCÊ DESEJA HOMENAGEAR?
@@ -157,7 +157,7 @@ export default function LandingPage() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="aspect-video md:aspect-[16/10] max-w-xl mx-auto rounded-3xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative border border-white/10 group"
+                className="aspect-[4/3] md:aspect-video max-w-sm md:max-w-md mx-auto rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative border border-white/10 group"
               >
                 <img 
                   src={contentMap[persona].image} 

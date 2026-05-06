@@ -79,43 +79,44 @@ export default function ObrigadoPage() {
     setIsSubmitting(true);
 
     try {
-      // 1. Tenta enviar para o backend local (funciona no ambiente de dev/servidor customizado)
-      // 2. Se falhar ou estiver em ambiente estático, tenta enviar direto para o Make/Webhook
       const webhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URI;
-      
       let response;
       
-      if (webhookUrl) {
-        // Envio direto para o Make (Ideal para GitHub Pages / Hospedagem estática)
-        response = await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            timestamp: new Date().toISOString(),
-            source: "Aura Musical - Site (Static)"
-          }),
-        });
-      } else {
-        // Envio para o backend interno
+      // Sempre tenta o backend primeiro para logs e redundância,
+      // a menos que estejamos em um ambiente comprovadamente estático sem backend.
+      try {
         response = await fetch("/api/briefing", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
+      } catch (serverError) {
+        console.warn("Backend API not reachable, trying direct webhook if available:", serverError);
+        if (webhookUrl) {
+          response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ...formData,
+              timestamp: new Date().toISOString(),
+              source: "Aura Musical - Direct Webhook Fallback"
+            }),
+          });
+        } else {
+          throw serverError;
+        }
       }
 
-      if (response.ok) {
-        // Redireciona para a página de análise após sucesso
-        setTimeout(() => {
-          window.location.hash = "/analise";
-        }, 1500);
+      if (response && response.ok) {
+        setStep(3);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        throw new Error("Falha ao enviar briefing");
+        const errorData = response ? await response.text() : "Sem resposta do servidor";
+        throw new Error(`Falha ao enviar briefing: ${response?.status} - ${errorData}`);
       }
     } catch (error) {
-      console.error("Erro:", error);
-      alert("Ocorreu um erro ao enviar seu briefing. Por favor, tente novamente ou entre em contato com o suporte.");
+      console.error("Erro completo no envio:", error);
+      alert("Ocorreu um erro ao enviar seu briefing. Nossa equipe foi notificada, mas você também pode nos chamar no WhatsApp para garantir o recebimento.");
     } finally {
       setIsSubmitting(false);
     }
