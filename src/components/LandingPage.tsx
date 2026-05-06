@@ -249,9 +249,14 @@ export default function LandingPage() {
                     </div>
                     
                     {/* Link Hotmart 1 */}
-                    <a href="https://pay.hotmart.com/P105694163K?off=gmocbhyn&checkoutMode=10" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] mt-6">
-                        Comprar Agora
-                    </a>
+                    <div className="mt-6 flex flex-col gap-3">
+                        <a href="https://hotm.io/NMUsbwmz" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                            Comprar Agora
+                        </a>
+                        <p className="text-[10px] text-center text-white/30 font-bold uppercase tracking-widest">
+                            Pagamento seguro via Hotmart
+                        </p>
+                    </div>
                 </div>
 
                 {/* Start Plan 2 (Highlighted) */}
@@ -285,9 +290,14 @@ export default function LandingPage() {
                     </div>
                     
                     {/* Link Hotmart 2 */}
-                    <a href="https://pay.hotmart.com/H105695281R?checkoutMode=2" className="w-full btn-gold py-4 text-center text-xs shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] hotmart-fb hotmart__button-checkout">
-                        Comprar Agora
-                    </a>
+                    <div className="mt-6 flex flex-col gap-3">
+                        <a href="https://pay.hotmart.com/H105695281R?checkoutMode=2" className="w-full btn-gold py-4 text-center text-xs shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] hotmart-fb hotmart__button-checkout">
+                            Comprar Agora
+                        </a>
+                        <p className="text-[10px] text-center text-brand-accent/50 font-black uppercase tracking-widest">
+                            Processado e Garantido por Hotmart
+                        </p>
+                    </div>
                 </div>
 
                 {/* Start Plan 3 */}
@@ -349,9 +359,14 @@ export default function LandingPage() {
                     </div>
                     
                     {/* Link Hotmart 3 */}
-                    <a href="https://pay.hotmart.com/L105695305P?checkoutMode=2" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] mt-6 hotmart-fb hotmart__button-checkout">
-                        Comprar Agora
-                    </a>
+                    <div className="mt-6 flex flex-col gap-3">
+                        <a href="https://pay.hotmart.com/L105695305P?checkoutMode=2" className="w-full btn-outline py-4 text-center text-xs shadow-none border hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hotmart-fb hotmart__button-checkout">
+                            Comprar Agora
+                        </a>
+                        <p className="text-[10px] text-center text-white/30 font-bold uppercase tracking-widest">
+                            Pagamento 100% seguro via Hotmart
+                        </p>
+                    </div>
                 </div>
             </div>
             
