@@ -60,14 +60,14 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-brand-bg text-white font-sans overflow-x-hidden atmosphere-bg">
       {/* Header */}
-      <nav className="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto relative z-50">
-        <div className="text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-3">
-          <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-10 h-10 object-contain" referrerPolicy="no-referrer" />
+      <nav className="flex justify-between items-center px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto relative z-50">
+        <div className="text-xl md:text-2xl font-serif italic font-black tracking-tight text-white flex items-center gap-2 md:gap-3">
+          <img src="https://i.ibb.co/6cszB9X2/auralogo.png" alt="Aura Musical Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" referrerPolicy="no-referrer" />
           Aura Musical
         </div>
         <button 
           onClick={handleStart}
-          className="glass hover:bg-white hover:text-black px-6 py-2 rounded-full font-medium transition-all text-sm uppercase tracking-widest"
+          className="glass hover:bg-white hover:text-black px-4 md:px-6 py-2 rounded-full font-medium transition-all text-xs md:text-sm uppercase tracking-widest whitespace-nowrap"
         >
           Criar Música
         </button>
@@ -94,22 +94,22 @@ export default function LandingPage() {
               <Zap size={12} fill="currentColor" /> Produção Artesanal: Somente 5 vagas para esta semana
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-serif italic font-black text-white mb-10 leading-[0.9]">
-              Não é só uma música.<br />É uma <span className="text-brand-accent italic underline decoration-brand-accent/30">memória eterna</span>.
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif italic font-black text-white mb-6 md:mb-10 leading-[1.1] md:leading-[0.9]">
+              Não é só uma música.<br className="hidden md:block" />É uma <span className="text-brand-accent italic underline decoration-brand-accent/30">memória eterna</span>.
             </h1>
 
-            <p className="text-white/40 max-w-xl text-lg md:text-xl font-medium leading-relaxed mb-12">
+            <p className="text-white/40 max-w-xl text-base md:text-xl font-medium leading-relaxed mb-8 md:mb-12">
               Transformamos sua história, apelidos e detalhes únicos em uma canção profissional digna de rádio. <span className="text-white">O presente que arranca lágrimas e dura para sempre.</span>
             </p>
 
-            <div className="space-y-6 mt-16">
+            <div className="space-y-4 md:space-y-6 mt-10 md:mt-16">
               <button 
                 onClick={handleStart}
-                className="w-full sm:w-auto bg-white text-black px-12 py-6 rounded-2xl text-xl font-black flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-[0_0_50px_rgba(255,255,255,0.2)] uppercase tracking-tight"
+                className="w-full sm:w-auto bg-white text-black px-8 md:px-12 py-5 md:py-6 rounded-2xl text-lg md:text-xl font-black flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-[0_0_50px_rgba(255,255,255,0.2)] uppercase tracking-tight"
               >
-                CRIAR ESSA HOMENAGEM <ChevronRight size={24} />
+                CRIAR ESSA HOMENAGEM <ChevronRight size={20} className="md:w-6 md:h-6" />
               </button>
-              <div className="flex flex-col sm:flex-row items-center gap-6 text-[10px] uppercase font-black tracking-widest text-white/30 pl-2">
+              <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 text-[10px] uppercase font-black tracking-widest text-white/30 px-2 text-center sm:text-left">
                 <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand-accent" /> Entrega Rápida</span>
                 <span className="hidden sm:block opacity-20">|</span>
                 <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-brand-accent" /> Garantia de Emoção</span>
@@ -153,11 +153,11 @@ export default function LandingPage() {
       <section className="py-32 px-6 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <h2 className="text-5xl lg:text-7xl font-serif italic font-black mb-6">Qual será o seu tom?</h2>
-            <p className="text-white/40 uppercase tracking-[0.3em] text-xs font-bold">Ouça o que nossos artistas podem criar</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-serif italic font-black mb-6">Qual será o seu tom?</h2>
+            <p className="text-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold px-4">Ouça o que nossos artistas podem criar</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
             {[
               { name: "Acústico Voz & Violão", desc: "Perfeito para momentos íntimos e delicados.", mood: "Emocionante" },
               { name: "MPB Contemporânea", desc: "Ritmo leve e poético para celebrar a vida.", mood: "Alegre" },

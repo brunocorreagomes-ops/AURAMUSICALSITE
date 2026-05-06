@@ -128,12 +128,12 @@ export default function ObrigadoPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="w-24 h-24 rounded-full bg-brand-accent/20 mx-auto flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(212,175,55,0.3)]">
-              <CheckCircle2 size={48} className="text-brand-accent animate-pulse" />
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-brand-accent/20 mx-auto flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(212,175,55,0.3)]">
+              <CheckCircle2 size={40} className="text-brand-accent animate-pulse md:w-12 md:h-12" />
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-serif italic font-black text-white mb-6">Pagamento Confirmado!</h1>
-            <p className="text-lg text-white/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            <h1 className="text-3xl md:text-6xl font-serif italic font-black text-white mb-6 leading-tight">Pagamento Confirmado!</h1>
+            <p className="text-base md:text-lg text-white/60 mb-10 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed px-4">
               Seu pedido já está confirmado. Agora precisamos de algumas informações para criar sua música personalizada. 
               <span className="block mt-2 text-brand-accent/80 text-sm font-medium">Leva menos de 2 minutos e é essencial para um resultado incrível.</span>
             </p>
@@ -381,12 +381,12 @@ export default function ObrigadoPage() {
               <CheckCircle2 size={48} className="text-brand-accent" />
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-serif italic font-black text-white mb-6">Briefing Recebido!</h2>
-            <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto font-light leading-relaxed">
+            <h2 className="text-3xl md:text-5xl font-serif italic font-black text-white mb-4 md:mb-6 leading-tight">Briefing Recebido!</h2>
+            <p className="text-base md:text-lg text-white/60 mb-8 md:mb-10 max-w-xl mx-auto font-light leading-relaxed">
               Nossos compositores e produtores já estão analisando sua história para criar a canção perfeita.
             </p>
 
-            <div className="glass p-8 md:p-12 rounded-[3rem] border border-brand-accent/20 max-w-lg mx-auto text-left relative overflow-hidden">
+            <div className="glass p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-brand-accent/20 max-w-lg mx-auto text-left relative overflow-hidden">
                <div className="absolute -right-4 -bottom-4 opacity-5">
                  <Music size={150} />
                </div>
