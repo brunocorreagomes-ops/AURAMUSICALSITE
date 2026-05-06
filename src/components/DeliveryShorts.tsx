@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, Volume2, VolumeX } from 'lucide-react';
 
@@ -35,30 +35,20 @@ export default function DeliveryShorts({ videoId, title, label }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  const handleMouseEnter = () => {
-    if (window.innerWidth >= 768) {
-      setIsHovered(true);
-      setIsPlaying(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (window.innerWidth >= 768) {
-      setIsHovered(false);
-      setIsPlaying(false);
-    }
+  const handleTogglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(!isPlaying);
   };
 
   // YouTube Shorts embed URL
-  // We use the embed endpoint with autoplay and mute
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=1&controls=0&loop=1&playlist=${videoId}&modestbranding=1&rel=0&iv_load_policy=3`;
+  // We use the embed endpoint with autoplay=1 and mute=0 when playing
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=0&controls=0&loop=1&playlist=${videoId}&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1`;
 
   return (
     <div 
       ref={containerRef}
       className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 group cursor-pointer"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onClick={handleTogglePlay}
     >
       {!videoId ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-white/[0.02]">
@@ -99,7 +89,7 @@ export default function DeliveryShorts({ videoId, title, label }: Props) {
 
           {isPlaying && (
             <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10">
-              <VolumeX size={12} className="text-white/60" />
+              <Volume2 size={12} className="text-white/60" />
             </div>
           )}
         </>
