@@ -93,9 +93,15 @@ export default function ObrigadoPage() {
       } catch (serverError) {
         console.warn("Backend API not reachable, trying direct webhook if available:", serverError);
         if (webhookUrl) {
+          const makeApiKey = import.meta.env.VITE_MAKE_API_KEY;
+          const headers: Record<string, string> = { "Content-Type": "application/json" };
+          if (makeApiKey) {
+            headers["x-make-apikey"] = makeApiKey;
+          }
+
           response = await fetch(webhookUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify({
               ...formData,
               timestamp: new Date().toISOString(),

@@ -39,11 +39,18 @@ async function startServer() {
     
     // Automação via Make.com
     const webhookUrl = process.env.VITE_MAKE_WEBHOOK_URI || process.env.MAKE_WEBHOOK_URI || process.env.MAKE_WEBHOOK_URL;
+    const makeApiKey = process.env.VITE_MAKE_API_KEY || process.env.MAKE_API_KEY;
+    
     if (webhookUrl) {
       try {
+        const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+        if (makeApiKey) {
+          headers['x-make-apikey'] = makeApiKey;
+        }
+
         await fetch(webhookUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({
             ...briefingData,
             timestamp: new Date().toISOString(),
