@@ -5,10 +5,11 @@ import { Play, Volume2, VolumeX } from 'lucide-react';
 interface Props {
   videoId: string;
   title: string;
+  label?: string;
   key?: string | number;
 }
 
-export default function DeliveryShorts({ videoId, title }: Props) {
+export default function DeliveryShorts({ videoId, title, label }: Props) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -92,7 +93,7 @@ export default function DeliveryShorts({ videoId, title }: Props) {
           </AnimatePresence>
 
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-            <p className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-1">Entrega Real</p>
+            <p className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-1">{label || "Entrega Real"}</p>
             <p className="text-xs font-serif italic text-white/90">{title}</p>
           </div>
 

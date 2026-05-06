@@ -16,7 +16,9 @@ export const contentMap = {
     ],
     prova: "Fiz pra minha namorada e ela chorou do começo ao fim. Foi o melhor aniversário de namoro que já tivemos.",
     image: "https://i.ibb.co/hhrqxYJ/CASAL-AURA.webp",
-    deliveries: [""] // YouTube Shorts IDs here
+    deliveries: [
+      { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" }
+    ]
   },
 
   amigo: {
@@ -30,7 +32,9 @@ export const contentMap = {
     ],
     prova: "Meu amigo não parava de rir e se emocionar ao mesmo tempo. A produção é impecável!",
     image: "https://i.ibb.co/zYYxrF5/AMIGO-AURA.webp",
-    deliveries: [""]
+    deliveries: [
+      { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" }
+    ]
   },
 
   familia: {
@@ -44,7 +48,9 @@ export const contentMap = {
     ],
     prova: "Dei de presente pra minha mãe e ela não tira do repeat. É o presente mais valioso da casa agora.",
     image: "https://i.ibb.co/zhDZ924h/FAMILIA-AURA-1.webp",
-    deliveries: [""]
+    deliveries: [
+      { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" }
+    ]
   },
 
   geral: {
@@ -53,6 +59,8 @@ export const contentMap = {
     exemplos: [],
     prova: "Simplesmente inesquecível. Superou todas as minhas expectativas em termos de qualidade e emoção.",
     image: "https://i.ibb.co/Rp4X8PXq/GERAL-OUTRO-AURA.webp",
-    deliveries: [""]
+    deliveries: [
+      { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" }
+    ]
   }
 }

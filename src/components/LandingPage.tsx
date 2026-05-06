@@ -194,16 +194,12 @@ export default function LandingPage() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 mb-20 md:mb-32">
-            {contentMap[persona].deliveries.map((id, idx) => (
+            {contentMap[persona].deliveries.map((delivery, idx) => (
               <DeliveryShorts 
                 key={`${persona}-${idx}`} 
-                videoId={id} 
-                title={
-                  persona === "namoro" ? "Uma história de amor real" :
-                  persona === "amigo" ? "Amizade que virou música" :
-                  persona === "familia" ? "Família reunida no refrão" :
-                  "Uma produção exclusiva Aura"
-                }
+                videoId={delivery.id} 
+                title={delivery.title}
+                label={delivery.label}
               />
             ))}
             {/* If there are fewer than 4 deliveries, fill with placeholders or general ones */}
