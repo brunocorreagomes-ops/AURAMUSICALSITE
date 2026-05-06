@@ -18,7 +18,8 @@ export const contentMap = {
     image: "https://i.ibb.co/hhrqxYJ/CASAL-AURA.webp",
     deliveries: [
       { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" },
-      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" }
+      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" },
+      { id: "YQvMndN1j6Q", title: "SUJEITO DE SORTE (RENATO BDAY)", label: "Aniversário - Eletrônica / EDM" }
     ]
   },
 
@@ -35,7 +36,8 @@ export const contentMap = {
     image: "https://i.ibb.co/zYYxrF5/AMIGO-AURA.webp",
     deliveries: [
       { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" },
-      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" }
+      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" },
+      { id: "YQvMndN1j6Q", title: "SUJEITO DE SORTE (RENATO BDAY)", label: "Aniversário - Eletrônica / EDM" }
     ]
   },
 
@@ -52,7 +54,8 @@ export const contentMap = {
     image: "https://i.ibb.co/zhDZ924h/FAMILIA-AURA-1.webp",
     deliveries: [
       { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" },
-      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" }
+      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" },
+      { id: "YQvMndN1j6Q", title: "SUJEITO DE SORTE (RENATO BDAY)", label: "Aniversário - Eletrônica / EDM" }
     ]
   },
 
@@ -64,7 +67,8 @@ export const contentMap = {
     image: "https://i.ibb.co/Rp4X8PXq/GERAL-OUTRO-AURA.webp",
     deliveries: [
       { id: "PZZZQKL2akY", title: "EDI, HOJE É SEU DIA", label: "Aniversário - Sertanejo" },
-      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" }
+      { id: "FHH7H0niz7Y", title: "TIA LI (MADRINHA QUERIDA)", label: "Homenagem - MPB / Pop" },
+      { id: "YQvMndN1j6Q", title: "SUJEITO DE SORTE (RENATO BDAY)", label: "Aniversário - Eletrônica / EDM" }
     ]
   }
 }
