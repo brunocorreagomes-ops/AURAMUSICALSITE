@@ -36,7 +36,7 @@
   .btn-gold {
       position: relative;
       overflow: hidden;
-      @apply text-black font-black uppercase tracking-[0.1em] rounded-full transition-all duration-300;
+      @apply text-black font-black uppercase tracking-[0.1em] rounded-2xl transition-all duration-300;
       background: linear-gradient(135deg, var(--color-brand-accent-dark) 0%, var(--color-brand-accent) 40%, var(--color-brand-accent-light) 60%, var(--color-brand-accent) 100%);
       box-shadow: 0 0 30px rgba(212,175,55,0.3);
       display: inline-block;

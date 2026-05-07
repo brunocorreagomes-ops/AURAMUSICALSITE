@@ -171,7 +171,7 @@ export default function LandingPage() {
                       <h4 className="text-xl md:text-2xl font-serif italic font-black text-white mb-4">
                         Uma composição {quizResults?.vibe === 'romantica' ? 'romântica' : quizResults?.vibe === 'engracada' ? 'divertida' : 'única'} em estilo {quizResults?.estilo === 'acustico' ? 'Acústico' : quizResults?.estilo === 'piano' ? 'Piano & Orquestra' : quizResults?.estilo === 'pop' ? 'Pop' : 'Sertanejo'}.
                       </h4>
-                      <button onClick={handleStart} className="w-full py-4 md:py-5 bg-brand-accent text-black rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs shadow-lg hover:brightness-110 transition-all">Começar agora</button>
+                      <button onClick={handleStart} className="w-full py-5 bg-brand-accent text-black rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs shadow-lg hover:brightness-110 transition-all">Começar agora</button>
                    </div>
                 </div>
               </motion.div>
@@ -284,7 +284,7 @@ export default function LandingPage() {
                     
                     {/* Link Hotmart 1 */}
                     <div className="mt-6 flex flex-col gap-3">
-                        <a href="https://hotm.io/NMUsbwmz" className="w-full bg-white/5 border border-brand-accent/20 text-white hover:bg-brand-accent hover:text-black py-4 text-center text-xs font-black uppercase tracking-widest rounded-xl transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                        <a href="https://hotm.io/NMUsbwmz" className="w-full bg-white/5 border border-brand-accent/30 text-white hover:bg-brand-accent hover:text-black py-5 text-center text-xs md:text-sm font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
                             Selecionar Plano
                         </a>
                         <p className="text-[10px] text-center text-white/30 font-bold uppercase tracking-widest">
@@ -343,7 +343,7 @@ export default function LandingPage() {
                     
                     {/* Link Hotmart 2 */}
                     <div className="mt-6 flex flex-col gap-3">
-                        <a href="https://pay.hotmart.com/H105695281R?checkoutMode=2" className="w-full btn-gold py-5 text-center text-xs font-black uppercase tracking-widest shadow-none hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] hotmart-fb hotmart__button-checkout">
+                        <a href="https://pay.hotmart.com/H105695281R?checkoutMode=2" className="w-full btn-gold py-6 text-center text-xs md:text-sm font-black uppercase tracking-widest hover:brightness-110 active:scale-95 hotmart-fb hotmart__button-checkout">
                             Garantir Vaga
                         </a>
                         <p className="text-[10px] text-center text-brand-accent/50 font-black uppercase tracking-widest">
@@ -413,7 +413,7 @@ export default function LandingPage() {
                     
                     {/* Link Hotmart 3 */}
                     <div className="mt-6 flex flex-col gap-3">
-                        <a href="https://pay.hotmart.com/L105695305P?checkoutMode=2" className="w-full bg-white text-black hover:bg-brand-accent py-4 text-center text-xs font-black uppercase tracking-widest rounded-xl transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hotmart-fb hotmart__button-checkout">
+                        <a href="https://pay.hotmart.com/L105695305P?checkoutMode=2" className="w-full bg-white text-black hover:bg-brand-accent py-5 text-center text-xs md:text-sm font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hotmart-fb hotmart__button-checkout">
                             Selecionar Plano
                         </a>
                         <p className="text-[10px] text-center text-white/30 font-bold uppercase tracking-widest">
